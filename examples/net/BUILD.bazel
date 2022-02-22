@@ -1,0 +1,11 @@
+cc_binary(
+	name = "ntest",
+	srcs = [
+		"netmain.cc",
+	],
+	copts = ["-std=c++17"],
+	linkopts = ["-pthread"],
+	deps = [
+		"@com_stablecc_scclib//net:lib",
+	]
+)

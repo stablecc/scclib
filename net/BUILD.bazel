@@ -1,0 +1,20 @@
+cc_library(
+	name = "lib",
+	srcs = [
+		"inet.cc",
+		"net_if.cc",
+		"socket.cc",
+		"unix.cc",
+	],
+	hdrs = glob([
+		"pub/net/*.h",
+	]),
+	includes = [
+		"pub",
+	],
+	copts = ["-std=c++17"],
+	deps = [
+		"@com_stablecc_scclib//util:lib"
+	],
+	visibility = ["//visibility:public"],
+)
