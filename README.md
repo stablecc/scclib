@@ -11,7 +11,7 @@ Set up bazel (see [how to install bazel](bazel.md)). A fairly easy way to set up
 one of the [pre-built releases](https://github.com/bazelbuild/bazel/releases/tag/5.0.0) available
 in github.
 
-Set up a workspace (or use the [scclib workspace](WORKSPACE.bazel).
+Set up a workspace (or use the [scclib workspace](WORKSPACE.bazel)).
 
 Build one of the the [examples](examples/).
 
