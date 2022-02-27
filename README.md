@@ -27,3 +27,15 @@ bazel build @com_stablecc_scclib//examples/net:ntest # network test example exec
 ## Documentation
 
 Scclib code is fully documented using [doxygen](https://www.doxygen.nl/index.html).
+
+When you have doxygen available, run the following command line after downloading the source
+code:
+```
+$ doxygen doxygen.conf
+```
+
+The docs will be created in the docs/ directory:
+```
+$ ls docs/html/index.html 
+docs/html/index.html
+```
