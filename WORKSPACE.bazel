@@ -1,30 +1,34 @@
+#
+# workspace file that provides @com_stablecc_scclib from the project root
+#
+
 workspace(name = "com_stablecc_scclib")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-# required by googletest
+# https://github.com/bazelbuild/rules_python/releases/tag/0.6.0
 http_archive(
-	name = "rules_python", # 2021-05-17T00:24:16Z
-	sha256 = "98b3c592faea9636ac8444bfd9de7f3fb4c60590932d6e6ac5946e3f8dbd5ff6",
-	strip_prefix = "rules_python-ed6cc8f2c3692a6a7f013ff8bc185ba77eb9b4d2",
-	urls = ["https://github.com/bazelbuild/rules_python/archive/ed6cc8f2c3692a6a7f013ff8bc185ba77eb9b4d2.zip"],
+	name = "rules_python",
+	sha256 = "f578b22630b8278ad75aa2d35128bd9ae8c387bfe687f310eda0e24404d2e6c8",
+	strip_prefix = "rules_python-b842276b79320b320998a0db47181b93716babed",
+	urls = ["https://github.com/bazelbuild/rules_python/archive/b842276b79320b320998a0db47181b93716babed.zip"],
 )
 
-# googletest/googlemock
+# https://github.com/google/googletest/releases/tag/release-1.11.0
 # bazel test @com_google_googletest//googletest/test:gtest_all_test
 # bazel test @com_google_googletest//googlemock/test:gmock_all_test
 http_archive(
-	name = "com_google_googletest",  # 2021-07-09T13:28:13Z
-	sha256 = "12ef65654dc01ab40f6f33f9d02c04f2097d2cd9fbe48dc6001b29543583b0ad",
-	strip_prefix = "googletest-8d51ffdfab10b3fba636ae69bc03da4b54f8c235",
-	urls = ["https://github.com/google/googletest/archive/8d51ffdfab10b3fba636ae69bc03da4b54f8c235.zip"],
+	name = "com_google_googletest",
+	sha256 = "8daa1a71395892f7c1ec5f7cb5b099a02e606be720d62f1a6a98f8f8898ec826",
+	strip_prefix = "googletest-e2239ee6043f73722e7aa812a459f54a28552929",
+	urls = ["https://github.com/google/googletest/archive/e2239ee6043f73722e7aa812a459f54a28552929.zip"],
 )
 
-# google benchmark
+# https://github.com/google/benchmark/releases/tag/v1.6.1
 # bazel test @com_github_google_benchmark//test:link_main_test
 http_archive(
-	name = "com_github_google_benchmark",  # 2021-09-20T09:19:51Z
-	sha256 = "62e2f2e6d8a744d67e4bbc212fcfd06647080de4253c97ad5c6749e09faf2cb0",
-	strip_prefix = "benchmark-0baacde3618ca617da95375e0af13ce1baadea47",
-	urls = ["https://github.com/google/benchmark/archive/0baacde3618ca617da95375e0af13ce1baadea47.zip"],
+	name = "com_github_google_benchmark",
+	sha256 = "3b156bac7800f67858afe6ec2c280e291da70c9fc55377cb47ac11cc83f3128e",
+	strip_prefix = "benchmark-0d98dba29d66e93259db7daa53a9327df767a415",
+	urls = ["https://github.com/google/benchmark/archive/0d98dba29d66e93259db7daa53a9327df767a415.zip"],
 )

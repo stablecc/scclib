@@ -1,5 +1,5 @@
 cc_test(
-	name = "all_tests",
+	name = "sccnetunit",
 	size = "small",
 	srcs = [
 		"inet_stream.cc",
@@ -11,6 +11,6 @@ cc_test(
 	copts = ["-std=c++17"],
 	deps = [
 		"@com_google_googletest//:gtest_main",
-		"@com_stablecc_scclib//net:lib",
+		"@com_stablecc_scclib//net:sccnetlib",
 	],
 )

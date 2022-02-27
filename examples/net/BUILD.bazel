@@ -6,6 +6,6 @@ cc_binary(
 	copts = ["-std=c++17"],
 	linkopts = ["-pthread"],
 	deps = [
-		"@com_stablecc_scclib//net:lib",
+		"@com_stablecc_scclib//net:sccnetlib",
 	]
 )

@@ -43,6 +43,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <fcntl.h>
 #include <libgen.h>
 #include <string>
+#include <vector>
 #include "util/safe_clib.h"
 
 const uint64_t NS=1000000000;

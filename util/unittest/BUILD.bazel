@@ -1,5 +1,5 @@
 cc_test(
-	name = "all_tests",
+	name = "sccutilunit",
 	size = "small",
 	srcs = [
 		"event.cc",
@@ -14,6 +14,6 @@ cc_test(
 	copts = ["-std=c++17"],
 	deps = [
 		"@com_google_googletest//:gtest_main",
-		"@com_stablecc_scclib//util:lib",
+		"@com_stablecc_scclib//util:sccutillib",
 	],
 )

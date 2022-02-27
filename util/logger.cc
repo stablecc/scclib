@@ -141,7 +141,7 @@ class LogStreambuf : public std::streambuf
 			std::clog.flush();
 		}
 
-		std::lock_guard lk(s_mx);
+		std::lock_guard<std::mutex> lk(s_mx);
 		for (auto os : m_strms)
 		{
 			*os << out.str();
@@ -207,7 +207,7 @@ public:
 
 	void add(const std::shared_ptr<std::ostream>& os)
 	{
-		std::lock_guard lk(s_mx);
+		std::lock_guard<std::mutex> lk(s_mx);
 		if (m_strms.find(os) == m_strms.end())
 		{
 			m_strms.insert(os);
@@ -216,7 +216,7 @@ public:
 
 	void remove(const std::shared_ptr<std::ostream>& os)
 	{
-		std::lock_guard lk(s_mx);
+		std::lock_guard<std::mutex> lk(s_mx);
 		auto it = m_strms.find(os);
 		if (it != m_strms.end())
 		{
@@ -248,7 +248,7 @@ public:
 		m_cerr = b.m_cerr;
 		m_clog = b.m_clog;
 
-		std::lock_guard lk(s_mx);
+		std::lock_guard<std::mutex> lk(s_mx);
 		m_strms = b.m_strms;
 	}
 
@@ -270,7 +270,7 @@ public:
 		m_cerr = false;
 		m_clog = false;
 
-		std::lock_guard lk(s_mx);
+		std::lock_guard<std::mutex> lk(s_mx);
 		m_strms.clear();
 	}
 

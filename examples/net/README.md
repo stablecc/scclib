@@ -2,20 +2,27 @@
 
 ## ntest
 
-Networking test tool.
+Networking test.
 
 ### build
 
-From the workspace directory
+Using the project workspace:
+```
+bazel build :ntest
+```
+
+Using from a local workspace:
 ```
 bazel build @com_stablecc_scclib//examples/net:ntest
-bazel-bin/external/com_stablecc_scclib/examples/net/ntest # list available commands
 ```
+
+Use the output of the bazel build command to find the location of the ntest executable.
 
 ### informational
 
 List addresses and interfaces.
 ```
+ntest # list available commands
 ntest -I # list available network interfaces
 ntest -A # list available addresses
 ```

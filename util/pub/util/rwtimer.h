@@ -56,12 +56,13 @@ namespace scc::util
 	Example from \ref scclib/util/unittest/iohelper.cc
 	\snippet scclib/util/unittest/iohelper.cc Counter and timer
 */
+
 class ReadTimer : public PipelineReader
 {
 	Reader* m_reader;
 	std::shared_ptr<Reader> m_shared;
-	std::atomic_int64_t m_ticks;
-	std::atomic_uint64_t m_calls;
+	std::atomic_int_least64_t m_ticks;
+	std::atomic_uint_least64_t m_calls;
 
 public:
 	/** Reads return 0 until reset. */
@@ -99,8 +100,8 @@ class WriteTimer : public PipelineWriter
 {
 	Writer* m_writer;
 	std::shared_ptr<Writer> m_shared;
-	std::atomic_int64_t m_ticks;
-	std::atomic_uint64_t m_calls;
+	std::atomic_int_least64_t m_ticks;
+	std::atomic_uint_least64_t m_calls;
 
 public:
 	/** Writes return 0 until reset. */

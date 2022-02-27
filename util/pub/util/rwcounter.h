@@ -59,8 +59,8 @@ class ReadCounter : public PipelineReader
 {
 	Reader* m_reader;
 	std::shared_ptr<Reader> m_shared;
-	std::atomic_uint64_t m_count;
-	std::atomic_uint64_t m_calls;
+	std::atomic_uint_least64_t m_count;
+	std::atomic_uint_least64_t m_calls;
 
 public:
 	/** Reads will return 0 until reset. */
@@ -97,8 +97,8 @@ class WriteCounter : public PipelineWriter
 {
 	Writer* m_writer;
 	std::shared_ptr<Writer> m_shared;
-	std::atomic_uint64_t m_count;
-	std::atomic_uint64_t m_calls;
+	std::atomic_uint_least64_t m_count;
+	std::atomic_uint_least64_t m_calls;
 
 public:
 	/** Writes will return 0 until reset. */

@@ -684,7 +684,7 @@ TEST(inet_example, tcp_multiserver)
 
 			log << "telling the client I am listening" << endl;
 			{
-				lock_guard lk(mx);
+				lock_guard<mutex> lk(mx);
 				listening++;
 				cv.notify_one();
 			}
@@ -722,7 +722,7 @@ TEST(inet_example, tcp_multiserver)
 		catch (exception& ex)
 		{
 			log << ex.what() << endl;
-			lock_guard lk(mx);				// just to make sure the client cannot block
+			lock_guard<mutex> lk(mx);				// just to make sure the client cannot block
 			listening++;
 			cv.notify_one();
 			return 0;
@@ -733,7 +733,7 @@ TEST(inet_example, tcp_multiserver)
 	auto fut2 = async(serv_task, 2);
 	auto fut3 = async(serv_task, 3);
  
-	unique_lock lk(mx);
+	unique_lock<mutex> lk(mx);
 	cv.wait(lk, [&listening]
 	{
 		return listening == 3;			// wait for all the threads to wake up

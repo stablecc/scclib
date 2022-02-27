@@ -1,5 +1,5 @@
 cc_library(
-	name = "lib",
+	name = "sccnetlib",
 	srcs = [
 		"inet.cc",
 		"net_if.cc",
@@ -14,7 +14,7 @@ cc_library(
 	],
 	copts = ["-std=c++17"],
 	deps = [
-		"@com_stablecc_scclib//util:lib"
+		"@com_stablecc_scclib//util:sccutillib"
 	],
 	visibility = ["//visibility:public"],
 )
