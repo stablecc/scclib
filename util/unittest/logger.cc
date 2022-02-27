@@ -46,7 +46,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Tests for \ref util_logger */
 /** @} */
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::vector;
+using std::thread;
+using std::string;
+using std::stringstream;
+using std::ifstream;
+using std::ofstream;
+using std::shared_ptr;
+using std::system_error;
+using std::make_shared;
+using std::istreambuf_iterator;
+using std::set;
 using fs = scc::util::Filesystem;
 using scc::util::Logger;
 

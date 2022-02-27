@@ -58,8 +58,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /** @} */
 
-using namespace std;
-using namespace scc::util;
+using std::cout;
+using std::endl;
+using std::string;
+using std::unique_lock;
+using std::lock_guard;
+using std::mutex;
+using std::exception;
+using std::condition_variable;
+using std::async;
+using std::stringstream;
+using std::error_code;
+using std::to_string;
+using scc::util::IoStream;
+using scc::util::Logger;
+using scc::util::Event;
+using scc::util::Poller;
 using scc::net::NetIfFlag;
 using scc::net::InetAddrFlag;
 using scc::net::InetAddr;

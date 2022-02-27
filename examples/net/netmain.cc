@@ -48,9 +48,18 @@ using std::string;
 using std::thread;
 using std::runtime_error;
 using std::endl;
-using namespace std::chrono;
-using namespace scc::net;
-using namespace scc::util;
+using std::chrono::milliseconds;
+using std::chrono::seconds;
+using scc::util::Logger;
+using scc::util::Event;
+using scc::util::Poller;
+using scc::util::InStream;
+using scc::util::OutStream;
+using scc::util::IoStream;
+using scc::net::NetIf;
+using scc::net::InetAddr;
+using scc::net::InetTcpSock;
+using scc::net::InetUdpSock;
 
 Logger lout;
 

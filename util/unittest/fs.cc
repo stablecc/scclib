@@ -48,7 +48,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Tests for \ref util_fs */
 /** @} */
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::string;
+using std::system_error;
+using std::setw;
+using std::ifstream;
 using fs = scc::util::Filesystem;
 using scc::util::FileType;
 
@@ -228,8 +233,6 @@ TEST_F(FsTest, attributes)
 //! [Sparse file]
 TEST(FsExampleTest, sparse_and_trunc)
 {
-	using namespace scc::util;
-
 	system_error err;
 	fs::remove_all("sandbox", &err);
 	fs::create_dir("sandbox");
@@ -249,7 +252,7 @@ TEST(FsExampleTest, sparse_and_trunc)
 		// if we use fstream, the system may truncate the file
 
 		// use system wrapper FileDesc to ensure the file is always closed
-		scc::util::FileDesc fd(safe_open_throw(fn.c_str(), O_WRONLY));
+		scc::util::FileDesc fd(scc::util::safe_open_throw(fn.c_str(), O_WRONLY));
 		
 		lseek(fd, loc, SEEK_SET);
 		safe_write_throw(fd, &s[0], s.size());

@@ -53,9 +53,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /** @} */
 
-using namespace std;
-using namespace scc::util;
-using namespace scc::net;
+using std::cout;
+using std::endl;
+using std::string;
+using std::stringstream;
+using std::ios;
+using scc::util::IoStream;
+using scc::util::Logger;
+using scc::util::Event;
+using scc::util::Poller;
+using scc::net::InetAddr;
+using scc::net::InetTcpSock;
 
 struct InetServerStreamTest : public testing::Test
 {

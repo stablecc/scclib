@@ -43,7 +43,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using std::cout;
 using std::endl;
-using namespace scc::util;
+using scc::util::safe_read;
+using scc::util::safe_write;
+using scc::util::safe_read_throw;
+using scc::util::safe_write_throw;
+using scc::util::safe_dup;
+using scc::util::safe_dup2;
+using scc::util::safe_dup_throw;
+using scc::util::safe_dup2_throw;
+using scc::util::safe_close;
+using scc::util::safe_close_throw;
 
 TEST(safe_unistd, invalid)
 {

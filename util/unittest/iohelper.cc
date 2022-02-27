@@ -46,8 +46,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Tests for \ref util_iohelpers */
 /** @} */
 
-using namespace std;
-using namespace scc::util;
+using std::cout;
+using std::endl;
+using std::string;
+using std::shared_ptr;
+using scc::util::Reader;
+using scc::util::Writer;
+//using scc::util::ReadTimer;		// TBD: untested
+//using scc::util::WriteTimer;		// TBD: untested
+using scc::util::RwTimer;
+using scc::util::ReadCounter;
+using scc::util::WriteCounter;
+using scc::util::RwCounter;
+using scc::util::RwLoopBuffer;
+using scc::util::IoPipeline;
+using scc::util::PipelineReader;
+using scc::util::InStream;
+using scc::util::OutStream;
+
 
 static string val = "This is a test of the emergency RwLoopBuffer system!";
 #define BUF_SZ 1024
@@ -173,7 +189,8 @@ TEST(RwCounter, counter_and_loop_buffer)
 TEST(IoHelpers, counter_timer)
 {
 	//! [Counter and timer]
-	using namespace std::chrono;
+	using std::chrono::milliseconds;
+	using std::chrono::duration_cast;
 
 	struct Slow : public Reader, public Writer
 	{

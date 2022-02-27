@@ -47,7 +47,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /** @} */
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::string;
+using std::vector;
 using scc::net::NetIf;
 using scc::net::NetIfAddr;
 using scc::net::InetAddr;

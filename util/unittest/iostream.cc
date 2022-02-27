@@ -45,7 +45,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Tests for \ref util_iostream */
 /** @} */
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::string;
+using std::stringstream;
+using std::ios;
 using scc::util::RwLoopBuffer;
 using scc::util::InStream;
 using scc::util::OutStream;

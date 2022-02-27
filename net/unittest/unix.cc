@@ -55,8 +55,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /** @} */
 
-using namespace std;
-using namespace scc::util;
+using std::cout;
+using std::endl;
+using std::string;
+using std::async;
+using std::stringstream;
+using scc::util::IoStream;
+using scc::util::Logger;
+using scc::util::Event;
+using scc::util::Poller;
 using scc::net::UnixAddr;
 using scc::net::UnixTcpSock;
 using scc::net::UnixUdpSock;
