@@ -39,3 +39,6 @@ The docs will be created in the docs/ directory:
 $ ls docs/html/index.html 
 docs/html/index.html
 ```
+
+Current documentation is available on
+[stablecc.github.io](https://stablecc.github.io/scclib-doxygen/).
