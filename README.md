@@ -2,14 +2,16 @@
 
 Standalone C++ general purpose library which should work in any system with the following:
 * [Linux](https://www.linux.org/)
-* [The Bazel build system](https://bazel.build/)
+* [The Bazel build system](https://bazel.build/).
 * A compiler with support for Standard C++ 17. See
 [cppreference](https://en.cppreference.com/w/cpp/17).
 
 The library should be compatible with Windows POSIX emulation environments such as
 [cygwin](https://www.cygwin.com/), but it was developed and tested on Linux
-(with GCC 9+). Likewise, it should work with older versions of bazel, but was
+(with GCC 9+). Likewise, it should work with older versions of Bazel, but was
 developed using Bazel 4.2+.
+
+An alternative [build system](make/) using GNU make is available, for systems without Bazel.
 
 ## Installation
 

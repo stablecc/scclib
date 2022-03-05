@@ -6,9 +6,12 @@ cc_library(
 		"socket.cc",
 		"unix.cc",
 	],
-	hdrs = glob([
-		"pub/net/*.h",
-	]),
+	hdrs = [
+		"pub/net/inet.h",
+		"pub/net/net_if.h",
+		"pub/net/socket.h",
+		"pub/net/unix.h",
+	],
 	includes = [
 		"pub",
 	],

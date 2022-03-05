@@ -9,9 +9,20 @@ cc_library(
 		"poller.cc",
 		"safe_clib.cc",
 	],
-	hdrs = glob([
-		"pub/util/*.h",
-	]),
+	hdrs = [
+		"pub/util/event.h",
+		"pub/util/filedesc.h",
+		"pub/util/fs.h",
+		"pub/util/iobase.h",
+		"pub/util/iopipeline.h",
+		"pub/util/iostream.h",
+		"pub/util/logger.h",
+		"pub/util/poller.h",
+		"pub/util/rwcounter.h",
+		"pub/util/rwloopbuf.h",
+		"pub/util/rwtimer.h",
+		"pub/util/safe_clib.h",
+	],
 	includes = [
 		"pub",
 	],
