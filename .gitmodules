@@ -1,0 +1,3 @@
+[submodule "import/googletest"]
+	path = import/googletest
+	url = https://github.com/stablecc/googletest.git
