@@ -55,6 +55,4 @@ $ git submodule update
 Cloning into '/home/mike/src/p4.stablecc.com/mike_mikedev_open/scc2/import/googletest'...
 ```
 
-Now can run unit tests, for example from **net/unittest** directory:
-```
-```
+Now can build and run unit tests, for example from **net/unittest** directory.
