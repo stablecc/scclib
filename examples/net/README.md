@@ -1,4 +1,4 @@
-# networking examples
+# networking example
 
 ## ntest
 
