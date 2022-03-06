@@ -42,6 +42,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/iostream.h"
 #include "util/logger.h"
 
+/** \addtogroup examples
+	@{ */
+/** Networking example \file */
+/** \example examples/net/netmain.cc */
+/** @} */
+
 using std::exception;
 using std::getline;
 using std::string;
