@@ -34,14 +34,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/event.h"
 #include <chrono>
 
+
 /** \addtogroup util_poller
-	@{
-*/
-
-/** Test file for \ref util_poller
-	\file scclib/util/unittest/poller.cc
-*/
-
+	@{ */
+/** Tests for \ref util_poller \file */
+/** \example util/unittest/poller.cc */
 /** @} */
 
 using std::cout;

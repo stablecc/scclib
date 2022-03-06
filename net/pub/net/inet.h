@@ -68,7 +68,7 @@ namespace scc::net {
 */
 
 /**
-	Address flags.
+	Internet address flags.
 */
 enum InetAddrFlag
 {
@@ -104,9 +104,16 @@ enum InetAddrFlag
 	unique_local_address =	0x10000000,		///< Address which can be used freely within a site: e.g. fd00::/8
 };
 
-/**
-	Network address. Uses ipv6 addresses only.
-	For example, an ipv4 address can be embedded in ipv6 by `::ffff:192.168.1.2`
+/** Ipv6 internet address.
+
+	An ipv4 address can be embedded in ipv6 for example, with ipv4/ipv6
+	
+	Example:
+
+	  
+	  ::ffff:192.168.1.2
+	  
+	
 	The default address is any host (all zeroes or ::)
 */
 class InetAddr : public SockaddrBase
@@ -236,8 +243,7 @@ public:
 	}
 };
 
-/**
-	Transmission Control Protocol socket (TCP/IP).
+/** Internet transmission control protocol (tcp) socket.
 
 	Allows reliable, error-checked delivery of a stream of bytes between two connected peers.
 */
@@ -281,8 +287,7 @@ public:
 	std::shared_ptr<InetTcpSock> accept_shared(InetAddr&);
 };
 
-/**
-	User Datagram Protocol socket (UDP/IP).
+/** Internet user datagram protocol (udp) socket.
 
 	Allows connectionless delivery of messages (datagrams), with a checksum for message integrity, but no guarantee of message ordering or delivery.
 */
@@ -349,8 +354,7 @@ public:
 
 }	// namespace
 
-/**
-	Print the socket address details to an output stream.
+/** Print the socket address details to an output stream.
 */
 std::ostream& operator<<(std::ostream&, const scc::net::InetAddr&);
 

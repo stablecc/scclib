@@ -39,6 +39,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sys/wait.h>
 #include <cstdio>
 
+/** \addtogroup util_safeclib
+	@{ */
+/** \ref util_safeclib implementation \file */
+/** @} */
+
 using namespace scc::util;
 
 int scc::util::safe_truncate(const char *path, off_t length)

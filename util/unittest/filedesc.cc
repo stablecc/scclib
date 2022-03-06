@@ -37,8 +37,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /** \addtogroup util_filedesc
 	@{ */
 /** Tests for \ref util_filedesc \file */
-/** \example scclib/util/unittest/filedesc.cc
-	Tests for \ref util_filedesc */
+/** \example util/unittest/filedesc.cc */
 /** @} */
 
 using std::cout;

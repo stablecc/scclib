@@ -47,7 +47,7 @@ namespace scc::util
 	@{
 */
 
-/** Base I/O stream classes.
+/** Base input/output stream classes.
 	\file
 */
 
@@ -149,7 +149,7 @@ public:
 	void clear(std::ios::iostate = std::ios::goodbit);
 };
 
-/**	I/O stream wrapper for reader/writer.
+/**	Input/output stream wrapper for reader/writer.
 
 	Makes \ref Reader and \ref Writer objects compatible with std::iostream.
 */

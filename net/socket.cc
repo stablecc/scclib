@@ -41,6 +41,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sys/ioctl.h>
 #include <sys/fcntl.h>
 
+/** \addtogroup net_sock
+	@{ */
+/** \ref net_sock implementation \file */
+/** @} */
+
 using namespace scc::net;
 
 std::ostream& operator<<(std::ostream& os, const SockaddrBase& sa)

@@ -37,9 +37,9 @@ File 'net_if.cc'
 Lines executed:91.53% of 118
 Creating 'net_if.cc.gcov'
 $ less net_if.cc.gcov # take a look
-$ rm *.gcov
+$ rm *.gcov # gcov leaves these files around
 $ popd
-$ make cleanall
+$ make cleanall # get rid of all the instrumented object files
 ```
 
 ## googletest
@@ -52,7 +52,7 @@ After downloading source code, initialize the submodules:
 $ git submodule init
 Submodule 'import/googletest' (https://github.com/stablecc/googletest.git) registered for path 'import/googletest'
 $ git submodule update
-Cloning into '/home/mike/src/p4.stablecc.com/mike_mikedev_open/scc2/import/googletest'...
+Submodule path 'import/googletest': checked out 'd1d1586089c85f4b724fb9c4dfd3a2e62760afe1'
 ```
 
 Now can build and run unit tests, for example from **net/unittest** directory.

@@ -44,13 +44,13 @@ namespace scc::util
 	@{
 */
 
-/** \defgroup util_fs Filesystem utilities
+/** \defgroup util_fs Common file system utilities
 	@{
 
-	File system utility class for common operations.
+	File system utility common operations.
 */
 
-/** File system utilities.
+/** Common file system utilities.
 	\file
 */
 
@@ -67,7 +67,10 @@ enum class FileType
 	fifo=		64  ///< FIFO
 };
 
-/** File stat. */
+/** File status structure.
+
+	Timestamps are in seconds since Epoch (1 January 1970 GMT).
+*/
 struct FileStat
 {
 	FileType 	type;			///< File type
@@ -86,11 +89,13 @@ struct FileStat
 		access_time(0), mod_time(0), change_time(0) {}
 };
 
-/** Default scan filter returns true for all files, except "." or ".." directories.
+/** Default scan filter.
+
+	Default scan filter returns true for all files, except "." or ".." directories.
 */
 bool default_scan_filter(const std::string&, FileType);
 
-/** Filesystem utility.
+/** Common file system utilities.
 
 	Utility to manipulate files and the filesystem.
 */

@@ -42,8 +42,7 @@ using scc::util::Event;
 /** \addtogroup util_event
 	@{ */
 /** Tests for \ref util_event \file */
-/** \example scclib/util/unittest/event.cc
-	Tests for \ref util_event */
+/** \example util/unittest/event.cc */
 /** @} */
 
 TEST(event_test, blocking)

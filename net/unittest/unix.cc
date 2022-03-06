@@ -44,15 +44,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/logger.h"
 
 /** \addtogroup net_unix
-	@{
-*/
-/** Test file for \ref net_unix
-	\file
-*/
-/** \example scclib/net/unittest/unix.cc
-	
-	Test for unix domain networking.
-*/
+	@{ */
+/** Tests for \ref net_unix \file */
+/** \example net/unittest/unix.cc */
 /** @} */
 
 using std::cout;

@@ -42,10 +42,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** \addtogroup util_fs
 	@{ */
-/** Tests for \ref util_fs \file
-*/
-/** \example scclib/util/unittest/fs.cc
-	Tests for \ref util_fs */
+/** Tests for \ref util_fs \file */
+/** \example util/unittest/fs.cc */
 /** @} */
 
 using std::cout;

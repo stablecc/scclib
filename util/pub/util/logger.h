@@ -42,17 +42,17 @@ namespace scc::util
 	@{
 */
 
-/** \defgroup util_logger Logging utility
+/** \defgroup util_logger Thread safe logging
 	@{
 	
-	Thread-safe logging utility.
+	Logging utility which can share std::ostream objects between multiple threads.
 */
 
-/** Logging utility.
+/** Thread safe logging.
 	\file
 */
 
-/** Stream logger class.
+/** Thread-safe stream logger.
 
 	Logger classes may be used as generic output streams, and shared streams attached to loggers will not
 	overwrite (clobber) log lines from from other threads.

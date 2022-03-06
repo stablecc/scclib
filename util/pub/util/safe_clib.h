@@ -48,6 +48,8 @@ namespace scc::util
 
 	Generally, APIs which are capable of EINTR error when interrupted a signal are included.
 
+	See https://man7.org/linux/man-pages/man7/signal.7.html
+
 	An example which uses safe clib apis to write into a sparse file,
 	from \ref scclib/util/unittest/fs.cc
 	\snippet scclib/util/unittest/fs.cc Sparse file

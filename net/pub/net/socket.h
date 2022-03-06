@@ -54,8 +54,7 @@ namespace scc::net {
 	\file
 */
 
-/**
-	Socket address base class.
+/** Socket address base class.
 */
 class SockaddrBase
 {
@@ -69,8 +68,7 @@ public:
 	virtual std::string host() const { return ""; }
 };
 
-/**
-	Socket base class.
+/** Socket base class.
 
 	In general most errors are returned via exception. Some of the interfaces can be called with an error_code reference, in which case the
 	error return must be checked by the caller. \see SocketBase::error_code
@@ -287,6 +285,8 @@ public:
 	void close();
 };
 
+/** Tcp socket base class.
+*/
 class TcpSocket : public SocketBase, public scc::util::Reader, public scc::util::Writer
 {
 protected:
@@ -343,6 +343,8 @@ public:
 	void shutdown();
 };
 
+/** Udp socket base class.
+*/
 class UdpSocket : public SocketBase
 {
 protected:

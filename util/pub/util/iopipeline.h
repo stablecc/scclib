@@ -46,7 +46,7 @@ namespace scc::util
 	@{
 */
 
-/** I/O streaming pipeline.
+/** Input/output streaming pipeline.
 	\file
 */
 
@@ -126,7 +126,7 @@ struct OutChain
 	virtual std::shared_ptr<Writer> wr_fix_chain();
 };
 
-/** InStream with pipeline of readers.
+/** Input stream with pipeline of readers.
 
 	Without:		stream reads <-> base
 	With chain:		stream reads <-> chain[0] <-> ... <-> chain[N] <-> base
@@ -140,7 +140,7 @@ struct InPipeline : public InChain, public InStream
 	std::shared_ptr<Reader> rd_fix_chain();
 };
 
-/** OutPipeline with pipeline of writers.
+/** Output stream pipeline of writers.
 
 	Without:		stream writes <-> base
 	With chain:		stream writes <-> chain[0] <-> ... <-> chain[N] <-> base
@@ -154,7 +154,7 @@ struct OutPipeline : public OutChain, public OutStream
 	std::shared_ptr<Writer> wr_fix_chain();
 };
 
-/** IoStream with pipeline of readers and writers.
+/** Input/output stream with pipeline of readers and writers.
 
 	Without:		stream reads/writes <-> base
 	With chain:		stream reads/writes <-> chain[0] <-> ... <-> chain[N] <-> base

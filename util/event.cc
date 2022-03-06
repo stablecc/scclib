@@ -35,6 +35,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sstream>
 #include "util/safe_clib.h"
 
+/** \addtogroup util_event
+	@{ */
+/** \ref util_event implementation \file */
+/** @} */
+
 using namespace scc::util;
 
 Event::Event(int flags) : m_fd(-1), m_flags(flags)

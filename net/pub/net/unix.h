@@ -53,8 +53,7 @@ namespace scc::net {
 	\file
 */
 
-/**
-	A unix domain address, which is a file of type "socket."
+/** A unix domain address, which is a file of type "socket."
 */
 class UnixAddr : public SockaddrBase
 {
@@ -92,8 +91,7 @@ public:
 	void host(const std::string&);
 };
 
-/**
-	Unix domain tcp (stream) socket.
+/** Unix domain tcp (stream) socket.
 */
 class UnixTcpSock : public TcpSocket
 {
@@ -130,8 +128,7 @@ public:
 	UnixTcpSock accept(UnixAddr&);
 };
 
-/**
-	Unix domain udp (datagram) socket.
+/** Unix domain udp (datagram) socket.
 */
 class UnixUdpSock : public UdpSocket
 {

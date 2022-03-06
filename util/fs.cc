@@ -46,6 +46,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <vector>
 #include "util/safe_clib.h"
 
+/** \addtogroup util_fs
+	@{ */
+/** \ref util_fs implementation \file */
+/** @} */
+
 const uint64_t NS=1000000000;
 
 using namespace scc::util;

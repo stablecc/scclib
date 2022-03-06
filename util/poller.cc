@@ -34,6 +34,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sstream>
 #include "util/safe_clib.h"
 
+/** \addtogroup util_poller
+	@{ */
+/** \ref util_poller implementation \file */
+/** @} */
+
 using namespace scc::util;
 
 Poller::Poller()

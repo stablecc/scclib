@@ -38,17 +38,17 @@ namespace scc::util
 	@{
 */
 
-/** \defgroup util_filedesc File descriptor wrapper
+/** \defgroup util_filedesc File descriptor
 	@{
 
 	Wraps an open file descriptor, providing safe duplication and destruction.
 */
 
-/** File descriptor wrapper.
+/** File descriptor.
 	\file
 */
 
-/** File descriptor wrapper.
+/** File descriptor.
 
 	Assumes ownership of an open file descriptor.
 
@@ -58,7 +58,8 @@ namespace scc::util
 	Copy operations duplicate the file descriptor.
 
 	Example of using FileDesc to protect a file descriptor opened with
-	the clib open api, in \ref scclib/util/unittest/fs.cc
+	the clib open api, from \ref scclib/util/unittest/fs.cc
+
 	\snippet scclib/util/unittest/fs.cc Sparse file
 */
 class FileDesc

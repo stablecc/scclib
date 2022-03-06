@@ -47,15 +47,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/logger.h"
 
 /** \addtogroup net_inet
-	@{
-*/
-/** Test file for \ref net_inet
-	\file
-*/
-/** \example scclib/net/unittest/inet.cc
-	
-	Test for internet networking.
-*/
+	@{ */
+/** Tests for \ref net_inet sockets \file */
+/** \example net/unittest/inet.cc */
 /** @} */
 
 using std::cout;
@@ -79,10 +73,6 @@ using scc::net::InetAddrFlag;
 using scc::net::InetAddr;
 using scc::net::InetTcpSock;
 using scc::net::InetUdpSock;
-
-#ifndef GTEST_SKIP
-#define GTEST_SKIP(dum) return
-#endif
 
 // look for an address on a network interface that satisfies InetAddrFlag input flag
 // Set the address if provided, and return the interface number

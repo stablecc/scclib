@@ -43,9 +43,9 @@ namespace scc::util
 /** \defgroup util_event Signaling kernel event counter
 	@{
 
-	A wrapper for Linux eventfd (man eventfd).
-	Provides a signallable event counter, which is readable and writable across process boundaries.
-	Linux command: man eventfd
+	A wrapper for Linux eventfd. Provides a signallable event counter, which is readable and writable across process boundaries.
+	
+	See https://man7.org/linux/man-pages/man2/eventfd.2.html
 
 	Test examples from \ref scclib/util/unittest/event.cc
 
@@ -66,7 +66,7 @@ namespace scc::util
 	\file
 */
 
-/** Kernel event counter.
+/** Signaling kernel event counter.
 
 	Writes increment the event counter.
 	

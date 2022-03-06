@@ -82,7 +82,9 @@ enum NetIfFlag
 	if_echo=			0x400   ///< Echoes sent packets.
 };
 
-/** A network interface. Contains zero or more internet addresses.
+/** A network interface.
+
+	Contains zero or more internet addresses.
 */
 class NetIf
 {

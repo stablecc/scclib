@@ -33,15 +33,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <iostream>
 
 /** \addtogroup net_inet
-	@{
-*/
-/** Test file for \ref net_inet
-	\file
-*/
-/** \example scclib/net/unittest/sockaddr.cc
-	
-	Test for internet networking addresses.
-*/
+	@{ */
+/** Tests for \ref net_inet addresses \file */
+/** \example net/unittest/inetaddr.cc */
 /** @} */
 
 using std::cout;

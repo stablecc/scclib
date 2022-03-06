@@ -40,10 +40,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** \addtogroup util_logger
 	@{ */
-/** Tests for \ref util_logger \file
-*/
-/** \example scclib/util/unittest/logger.cc
-	Tests for \ref util_logger */
+/** Tests for \ref util_logger \file */
+/** \example util/unittest/logger.cc */
 /** @} */
 
 using std::cout;

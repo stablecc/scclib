@@ -36,15 +36,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "net/socket.h"
 
 /** \addtogroup net_if
-	@{
-*/
-/** Test file for \ref net_if
-	\file
-*/
-/** \example scclib/net/unittest/net_if.cc
-	
-	Test for networking interfaces.
-*/
+	@{ */
+/** Tests for \ref net_if \file */
+/** \example net/unittest/net_if.cc */
 /** @} */
 
 using std::cout;

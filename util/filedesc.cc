@@ -31,6 +31,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/filedesc.h"
 #include "util/safe_clib.h"
 
+/** \addtogroup util_event
+	@{ */
+/** \ref util_filedesc implementation \file */
+/** @} */
+
 using namespace scc::util;
 
 void FileDesc::close()

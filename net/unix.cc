@@ -38,6 +38,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sstream>
 #include <cstring>
 
+/** \addtogroup net_unix
+	@{ */
+/** \ref net_unix implementation \file */
+/** @} */
+
 using namespace scc::net;
 
 void UnixAddr::init()

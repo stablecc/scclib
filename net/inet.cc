@@ -41,6 +41,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <netinet/in.h>
 #include <cstring>
 
+/** \addtogroup net_inet
+	@{ */
+/** \ref net_inet implementation \file */
+/** @} */
+
 using namespace scc::net;
 
 void InetAddr::init()

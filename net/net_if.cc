@@ -47,6 +47,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/filedesc.h"
 #include "net/inet.h"
 
+/** \addtogroup net_if
+	@{ */
+/** \ref net_if implementation \file */
+/** @} */
+
 using namespace scc::net;
 
 std::vector<InetAddr> NetIf::host_addrs(const std::string& name, NetIf::SocketType type)

@@ -39,11 +39,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdexcept>
 #include <algorithm>
 
-using namespace scc::util;
+/** \addtogroup util_iostream
+	@{ */
+/** \ref util_iostream implementation \file */
+/** @} */
 
-///
-/// stream buffers
-///
+using namespace scc::util;
 
 class InStreambuf : public virtual std::streambuf
 {
@@ -66,7 +67,6 @@ class InStreambuf : public virtual std::streambuf
 		{
 			m_fail.clear();
 			len = m_reader->read(m_recv.data(), m_recv.size());
-//std::cerr << "istrm read len=" << len << std::endl;
 		}
 		catch (std::exception& ex)
 		{
@@ -92,7 +92,6 @@ protected:
 		}
 
 		size_t len = read();
-//std::cerr << "istrm underflow: read len=" << len << std::endl;
 
 		if (!len)
 		{
@@ -113,14 +112,10 @@ protected:
 	*/
 	virtual int sync()
 	{
-//		size_t curp = gptr()-eback(), endp = egptr()-eback();
-//std::cerr << "istrm sync, cur: " << curp << " end: " << endp << std::endl;
-//		setg((char*)m_recv.data(), (char*)m_recv.data(), (char*)m_recv.data());		// empty the get area, if there was any data it is lost
-
-	/*
-		it looks like the correct behavior here is to do nothing. Devices like files with a single file pointer would have different behavior,
-		but doing anything here messes up sockets, character rw buffer.
-	*/
+		/*
+			the correct behavior here is to do nothing. Devices like files with a single file pointer would have different behavior,
+			but doing anything here messes up sockets & character rw buffer.
+		*/
 		return 0;
 	}
 
@@ -191,7 +186,6 @@ class OutStreambuf : public virtual std::streambuf
 	{
 		if (!m_writer)		throw std::runtime_error("OutStreambuf not initialized");
 
-//std::cerr << "ostrm send len=" << len << std::endl;
 		if (!len)			return true;
 
 		size_t left = len;
@@ -204,7 +198,6 @@ class OutStreambuf : public virtual std::streambuf
 			try
 			{
 				m_fail.clear();
-//std::cerr << "ostrm write left=" << left << std::endl;
 				sent = m_writer->write(loc, left);
 
 				if (sent == 0)
@@ -238,11 +231,9 @@ protected:
 	{
 		if (traits_type::eq_int_type(traits_type::eof(), c))	// got an eof, don't send anything
 		{
-//std::cerr << "ostrm overflow: eof" << std::endl;
 			return c;
 		}
 
-//std::cerr << "ostrm overflow char=" << (isprint(c)?(char)c:'.') << " sending len=" << m_send.size() << std::endl;
 		traits_type::assign(*pptr(), c);  // store the last character in the buffer
 
 		if (!send(m_send.size()))
@@ -263,7 +254,6 @@ protected:
 	{
 		// flush the buffer
 		size_t len = pptr() - pbase();
-//std::cerr << "ostrm sync len=" << len << std::endl;
 		if (!send(len))
 		{
 			return -1;

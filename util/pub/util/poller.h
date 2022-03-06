@@ -41,19 +41,19 @@ namespace scc::util
 	@{
 */
 
-/** \defgroup util_poller Kernel i/o event notification poller
+/** \defgroup util_poller Kernel file descriptor event notification poller
 	@{
 	
-	Wrapper for Linux kernel i/o event notification.
+	Linux kernel file descriptor event notification, using Linux epoll.
 	
-	Linux command line: man epoll
+	See https://man7.org/linux/man-pages/man7/epoll.7.html
 */
 
 /** Linux kernel i/o event notification (poller).
 	\file
 */
 
-/** Poller. Allows polling of generic file descriptors for various events.
+/** Poller which allows polling of generic file descriptors for various events.
 
 	Examples of valid descriptors are pipes and stream (TCP) sockets.
 

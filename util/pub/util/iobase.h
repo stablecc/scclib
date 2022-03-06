@@ -40,7 +40,7 @@ namespace scc::util
 	@{
 */
 
-/** \defgroup util_iostream I/O stream utilities
+/** \defgroup util_iostream input/output stream utilities
 	@{
 
 	Allows wrapping of generic streaming objects into std::iostream.
@@ -50,9 +50,6 @@ namespace scc::util
 	Example from \ref scclib/util/unittest/iostream.cc of basic stream:
 	\snippet scclib/util/unittest/iostream.cc I/O stream
 	
-	Example from \ref scclib/encode/unittest/compress.cc creating a compressed stream:
-	\snippet scclib/encode/unittest/compress.cc I/o stack
-
 	Example from \ref scclib/util/unittest/iohelper.cc showing chaining of reader/writers:
 	\snippet scclib/util/unittest/iohelper.cc Chained test
 
@@ -60,7 +57,7 @@ namespace scc::util
 	\snippet scclib/util/unittest/iohelper.cc Counter and timer
 */
 
-/** I/O stream base reader/writer interface classes.
+/** Input/output stream base reader/writer interface classes.
 	\file
 */
 
@@ -102,6 +99,8 @@ struct PipelineWriter : public Writer
 	virtual std::shared_ptr<Writer> write_shared() const = 0;
 };
 
+/** Pipeline reader which flows through all data.
+*/
 struct FlowThroughPipelineReader : public PipelineReader
 {
 	std::shared_ptr<Reader> reader;
@@ -121,7 +120,8 @@ struct FlowThroughPipelineReader : public PipelineReader
 	virtual std::shared_ptr<Reader> read_shared() const { return reader; };
 };
 
-/** Helper for setting up pipelines. */
+/** Pipeline writer which flows through all data.
+*/
 struct FlowThroughPipelineWriter : public PipelineWriter
 {
 	std::shared_ptr<Writer> writer;

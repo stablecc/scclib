@@ -32,13 +32,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/safe_clib.h"
 
 /** \addtogroup util_safeclib
-	@{
-*/
-
-/** Test file for \ref util_safeclib
-	\file scclib/util/unittest/safe_clib.cc
-*/
-
+	@{ */
+/** Tests for \ref util_safeclib \file */
+/** \example util/unittest/safe_clib.cc */
 /** @} */
 
 using std::cout;

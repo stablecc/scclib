@@ -41,6 +41,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <mutex>
 #include <system_error>
 
+/** \addtogroup util_logger
+	@{ */
+/** \ref util_logger implementation \file */
+/** @} */
+
 using namespace scc::util;
 
 std::mutex s_mx;			// some stream objects (like fstream) are not thread safe

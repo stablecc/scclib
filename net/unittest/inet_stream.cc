@@ -42,15 +42,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "util/logger.h"
 
 /** \addtogroup net_inet
-	@{
-*/
-/** Test file for \ref net_inet
-	\file
-*/
-/** \example scclib/net/unittest/inet_stream.cc
-	
-	Test for servers using tcp streams.
-*/
+	@{ */
+/** Tests for \ref net_inet streams \file */
+/** \example net/unittest/inet_stream.cc */
 /** @} */
 
 using std::cout;

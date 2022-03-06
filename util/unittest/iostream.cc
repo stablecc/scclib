@@ -39,10 +39,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** \addtogroup util_iostream
 	@{ */
-/** Tests for \ref util_iostream
-	\file */
-/** \example scclib/util/unittest/iostream.cc
-	Tests for \ref util_iostream */
+/** Tests for \ref util_iostream \file */
+/** \example util/unittest/iostream.cc */
 /** @} */
 
 using std::cout;
