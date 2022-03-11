@@ -1,3 +1,12 @@
 [submodule "import/googletest"]
 	path = import/googletest
 	url = https://github.com/stablecc/googletest.git
+[submodule "import/ipp"]
+	path = import/ipp
+	url = https://github.com/stablecc/scclib-ipp.git
+[submodule "import/ippcp"]
+	path = import/ippcp
+	url = https://github.com/stablecc/scclib-ippcp.git
+[submodule "import/openssl"]
+	path = import/openssl
+	url = https://github.com/stablecc/scclib-openssl.git
