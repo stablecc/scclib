@@ -28,11 +28,11 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include "util/poller.h"
+#include <util/poller.h>
 #include <sys/epoll.h>
 #include <system_error>
 #include <sstream>
-#include "util/safe_clib.h"
+#include <util/safe_clib.h>
 
 /** \addtogroup util_poller
 	@{ */

@@ -28,7 +28,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include "net/unix.h"
+#include <net/unix.h>
 #include <gtest/gtest.h>
 #include <iostream>
 #include <system_error>
@@ -36,12 +36,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <thread>
 #include <future>
 #include <sstream>
-#include "util/event.h"
-#include "util/poller.h"
-#include "net/inet.h"
-#include "util/iostream.h"
-#include "util/fs.h"
-#include "util/logger.h"
+#include <util/event.h>
+#include <util/poller.h>
+#include <net/inet.h>
+#include <util/iostream.h>
+#include <util/fs.h>
+#include <util/logger.h>
 
 /** \addtogroup net_unix
 	@{ */

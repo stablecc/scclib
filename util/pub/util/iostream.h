@@ -34,7 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <istream>
 #include <string>
 #include <memory>
-#include "util/iobase.h"
+#include <util/iobase.h>
 
 namespace scc::util
 {

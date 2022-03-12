@@ -28,12 +28,12 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include "net/net_if.h"
+#include <net/net_if.h>
 #include <gtest/gtest.h>
 #include <iostream>
 #include <algorithm>
 #include <string>
-#include "net/socket.h"
+#include <net/socket.h>
 
 /** \addtogroup net_if
 	@{ */
