@@ -33,14 +33,14 @@ http_archive(
 	urls = ["https://github.com/google/benchmark/archive/0d98dba29d66e93259db7daa53a9327df767a415.zip"],
 )
 
-# Intel IPP library (see intel_license.txt)
+# Intel IPP library (see intel.txt)
 new_local_repository(
 	name = "import_ipp",
 	path = "/opt/intel/ipp",
 	build_file = "ipp.BUILD.bazel",
 )
 
-# Intel IPP Cryptography library (see intel_license.txt)
+# Intel IPP Cryptography library (see intel.txt)
 new_local_repository(
 	name = "import_ippcp",
 	path = "/opt/intel/ippcp",
