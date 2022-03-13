@@ -37,7 +37,7 @@ code:
 $ doxygen doxygen.conf
 ```
 
-The docs will be created in the docs/ directory:
+The docs will be created in the `docs/` directory:
 ```
 $ ls docs/html/index.html 
 docs/html/index.html
@@ -45,3 +45,12 @@ docs/html/index.html
 
 Current documentation is available on
 [stablecc.github.io](https://stablecc.github.io/scclib-doxygen/).
+
+## Licensing
+
+Source:
+* [BSD 3-Clause License](LICENSE)
+
+Redistribution:
+* [OpenSSL and SSLeay Licenses](license-openssl-ssleay.txt)
+* [Intel Simplified Software License](intel_license.txt)

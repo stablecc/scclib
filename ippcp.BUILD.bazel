@@ -1,0 +1,14 @@
+cc_library(
+	name = "extippcplib",
+	hdrs = glob([
+		"include/*.h",
+	]),
+	includes = [
+		"include",
+	],
+	linkopts = [
+		"-L /opt/intel/ippcp/lib/intel64", # NOTE: hardcoded path, might be able to access the WORKSPACE path here
+		"-lippcp",
+	],
+	visibility = ["//visibility:public"],
+)
