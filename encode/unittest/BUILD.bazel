@@ -1,0 +1,12 @@
+cc_test(
+	name = "sccencodeunit",
+	size = "small",
+	srcs = [
+		"hex.cc",
+	],
+	copts = ["-std=c++17"],
+	deps = [
+		"@com_google_googletest//:gtest_main",
+		"@com_stablecc_scclib//encode:sccencodelib",
+	],
+)

@@ -1,0 +1,17 @@
+cc_library(
+	name = "sccencodelib",
+	srcs = [
+		"hex.cc",
+	],
+	hdrs = [
+		"pub/encode/hex.h",
+	],
+	includes = [
+		"pub",
+	],
+	copts = ["-std=c++17"],
+	deps = [
+		"@com_stablecc_scclib//util:sccutillib"
+	],
+	visibility = ["//visibility:public"],
+)
