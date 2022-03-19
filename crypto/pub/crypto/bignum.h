@@ -69,7 +69,7 @@ public:
 		move(other);
 	}
 	/** Move assignment */
-	Bignum& operator=(Bignum&& other)
+	Bignum& operator =(Bignum&& other)
 	{
 		move(other);
 		return *this;
@@ -81,7 +81,7 @@ public:
 		copy(other);
 	}
 	/** Copy assignment */
-	Bignum& operator=(const Bignum& other)
+	Bignum& operator =(const Bignum& other)
 	{
 		copy(other);
 		return *this;
@@ -93,7 +93,7 @@ public:
 		set(w);
 	}
 	/** Word assignment */
-	Bignum& operator=(uint32_t w)
+	Bignum& operator =(uint32_t w)
 	{
 		set(w);
 		return *this;
@@ -253,6 +253,12 @@ public:
 	}
 	/** Divide a/b. Optional remainder. */
 	void div(const Bignum&, Bignum*);
+	/** Divide a/b. Optional remainder. */
+	void div(uint32_t b, Bignum* rem)
+	{
+		Bignum bn(b);
+		div(bn, rem);
+	}
 	/** Modulus a%b. */
 	void mod(const Bignum&);
 	/** Word modulus. */
@@ -372,260 +378,305 @@ public:
 	/** Arithmetic compare. */
 	int cmp(const Bignum&) const;
 
-	bool operator==(const Bignum& o) const { return cmp(o) == 0; }
-	bool operator==(Bignum& o) const { return cmp(o) == 0; }
-	bool operator!=(const Bignum& o) const { return cmp(o) != 0; }
-	bool operator<(const Bignum& o) const { return cmp(o) < 0; }
-	bool operator>(const Bignum& o) const { return cmp(o) > 0; }
-	bool operator<=(const Bignum& o) const { return cmp(o) <= 0; }
-	bool operator>=(const Bignum& o) const { return cmp(o) >= 0; }
-	bool operator==(uint32_t o) const { return cmp(o) == 0; }
-	bool operator!=(uint32_t o) const { return cmp(o) != 0; }
-	bool operator<(uint32_t o) const { return cmp(o) < 0; }
-	bool operator>(uint32_t o) const { return cmp(o) > 0; }
-	bool operator<=(uint32_t o) const { return cmp(o) <= 0; }
-	bool operator>=(uint32_t o) const { return cmp(o) >= 0; }
-	Bignum operator<<(int shift) const
+	/** Equal operator. */
+	bool operator ==(const Bignum& o) const { return cmp(o) == 0; }
+	/** Not equal operator. */
+	bool operator !=(const Bignum& o) const { return cmp(o) != 0; }
+	/** Less than operator. */
+	bool operator <(const Bignum& o) const { return cmp(o) < 0; }
+	/** Greater than operator. */
+	bool operator >(const Bignum& o) const { return cmp(o) > 0; }
+	/** Less than equal operator. */
+	bool operator <=(const Bignum& o) const { return cmp(o) <= 0; }
+	/** Greater than equal operator. */
+	bool operator >=(const Bignum& o) const { return cmp(o) >= 0; }
+	/** Equal operator. */
+	bool operator ==(uint32_t o) const { return cmp(o) == 0; }
+	/** Not equal operator. */
+	bool operator !=(uint32_t o) const { return cmp(o) != 0; }
+	/** Less than operator. */
+	bool operator <(uint32_t o) const { return cmp(o) < 0; }
+	/** Greater than operator. */
+	bool operator >(uint32_t o) const { return cmp(o) > 0; }
+	/** Less than equal operator. */
+	bool operator <=(uint32_t o) const { return cmp(o) <= 0; }
+	/** Greater than equal operator. */
+	bool operator >=(uint32_t o) const { return cmp(o) >= 0; }
+
+	/** Right shift operator. */
+	Bignum operator <<(int shift) const
 	{
 		Bignum b(*this);
 		b.lshift(shift);
 		return b;
 	}
-	Bignum& operator<<=(int shift)
+	/** Right shift assign operator. */
+	Bignum& operator <<=(int shift)
 	{
 		lshift(shift);
 		return *this;
 	}
-	Bignum operator>>(int shift) const
+	/** Right shift operator. */
+	Bignum operator >>(int shift) const
 	{
 		Bignum b(*this);
 		b.rshift(shift);
 		return b;
 	}
-	Bignum& operator>>=(int shift)
+	/** Right shift assign operator. */
+	Bignum& operator >>=(int shift)
 	{
 		rshift(shift);
 		return *this;
 	}
-	Bignum operator+(const Bignum& a) const
+	/** Add operator. */
+	Bignum operator +(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.add(a);
 		return r;
 	}
-	Bignum operator+=(const Bignum& a)
+	/** Add assign operator. */
+	Bignum operator +=(const Bignum& a)
 	{
 		add(a);
 		return *this;
 	}
-	Bignum operator+(uint32_t a) const
+	/** Add operator. */
+	Bignum operator +(uint32_t a) const
 	{
 		Bignum r(*this);
 		r.add(a);
 		return r;
 	}
-	Bignum operator+=(uint32_t a)
+	/** Add assign operator. */
+	Bignum operator +=(uint32_t a)
 	{
 		add(a);
 		return *this;
 	}
-	Bignum& operator++()
+	/** Prefix addition operator. */
+	Bignum& operator ++()
 	{
 		add(1);	// prefix
 		return *this;
 	}
-	Bignum operator++(int d)
+	/** Postfix addition operator. */
+	Bignum operator ++(int d)
 	{
 		Bignum r(*this);
 		add(1);	// postfix
 		return r;
 	}
-	/** Negation operator -a */
-	Bignum operator-()
+	/** Negation operator  -a */
+	Bignum operator -()
 	{
 		negate();
 		return *this;
 	}
-	Bignum operator-(const Bignum& a) const
+	/** Subtract operator. */
+	Bignum operator -(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.sub(a);
 		return r;
 	}
-	Bignum operator-=(const Bignum& a)
+	/** Subtract assign operator. */
+	Bignum operator -=(const Bignum& a)
 	{
 		sub(a);
 		return *this;
 	}
-	Bignum operator-(uint32_t a) const
+	/** Subtract operator. */
+	Bignum operator -(uint32_t a) const
 	{
 		Bignum r(*this);
 		r.sub(a);
 		return r;
 	}
-	Bignum operator-=(uint32_t a)
+	/** Subtract assign operator. */
+	Bignum operator -=(uint32_t a)
 	{
 		sub(a);
 		return *this;
 	}
-	Bignum& operator--()
+	/** Prefix decrement. */
+	Bignum& operator --()
 	{
 		sub(1);	// prefix
 		return *this;
 	}
-	Bignum operator--(int d)
+	/** Postfix decrement. */
+	Bignum operator --(int d)
 	{
 		Bignum r(*this);
 		sub(1);	// postfix
 		return r;
 	}
-	Bignum operator*(const Bignum& a) const
+	/** Multiply operator. */
+	Bignum operator *(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.mul(a);
 		return r;
 	}
-	Bignum operator*=(const Bignum& a)
+	/** Multiply assign operator. */
+	Bignum operator *=(const Bignum& a)
 	{
 		mul(a);
 		return *this;
 	}
-	Bignum operator*(uint32_t a) const
+	/** Multiply operator. */
+	Bignum operator *(uint32_t a) const
 	{
 		Bignum r(*this);
 		r.mul(a);
 		return r;
 	}
-	Bignum operator*=(uint32_t a)
+	/** Multiply assign operator. */
+	Bignum operator *=(uint32_t a)
 	{
 		mul(a);
 		return *this;
 	}
-	void div(uint32_t b, Bignum* rem)
-	{
-		Bignum bn(b);
-		div(bn, rem);
-	}
-	Bignum operator/(const Bignum& a) const
+	/** Divide operator. */
+	Bignum operator /(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.div(a, nullptr);
 		return r;
 	}
-	Bignum operator/=(const Bignum& a)
+	/** Divide assign operator. */
+	Bignum operator /=(const Bignum& a)
 	{
 		div(a, nullptr);
 		return *this;
 	}
-	Bignum operator/(uint32_t a) const
+	/** Divide operator. */
+	Bignum operator /(uint32_t a) const
 	{
 		Bignum r(*this);
 		r.div(a, nullptr);
 		return r;
 	}
-	Bignum operator/=(uint32_t a)
+	/** Divide assign operator. */
+	Bignum operator /=(uint32_t a)
 	{
 		div(a, nullptr);
 		return *this;
 	}
-	Bignum operator%(const Bignum& a) const
+	/** Modulus operator. */
+	Bignum operator %(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.mod(a);
 		return r;
 	}
-	Bignum operator%=(const Bignum& a)
+	/** Modulus assign operator. */
+	Bignum operator %=(const Bignum& a)
 	{
 		mod(a);
 		return *this;
 	}
-	Bignum operator%(uint32_t a) const
+	/** Modulus operator. */
+	Bignum operator %(uint32_t a) const
 	{
 		Bignum r(*this);
 		r.mod(a);
 		return r;
 	}
-	Bignum operator%=(uint32_t a)
+	/** Modulus assign operator. */
+	Bignum operator %=(uint32_t a)
 	{
 		mod(a);
 		return *this;
 	}
-	Bignum operator&(const Bignum& a) const
+	/** And operator. */
+	Bignum operator &(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.bit_and(a);
 		return r;
 	}
-	Bignum operator&=(const Bignum& a)
+	/** And assign operator. */
+	Bignum operator &=(const Bignum& a)
 	{
 		bit_and(a);
 		return *this;
 	}
-	Bignum operator&(uint32_t a) const
+	/** And operator. */
+	Bignum operator &(uint32_t a) const
 	{
 		Bignum r(*this);
 		Bignum b(a);
 		r.bit_and(b);
 		return r;
 	}
-	Bignum operator&=(uint32_t a)
+	/** And assign operator. */
+	Bignum operator &=(uint32_t a)
 	{
 		Bignum b(a);
 		bit_and(b);
 		return *this;
 	}
-
-	Bignum operator|(const Bignum& a) const
+	/** Or operator. */
+	Bignum operator |(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.bit_or(a);
 		return r;
 	}
-	Bignum operator|=(const Bignum& a)
+	/** Or assign operator. */
+	Bignum operator |=(const Bignum& a)
 	{
 		bit_or(a);
 		return *this;
 	}
-	Bignum operator|(uint32_t a) const
+	/** Or operator. */
+	Bignum operator |(uint32_t a) const
 	{
 		Bignum r(*this);
 		Bignum b(a);
 		r.bit_or(b);
 		return r;
 	}
-	Bignum operator|=(uint32_t a)
+	/** Or assign operator. */
+	Bignum operator |=(uint32_t a)
 	{
 		Bignum b(a);
 		bit_or(b);
 		return *this;
 	}
-
-	Bignum operator^(const Bignum& a) const
+	/** Xor operator. */
+	Bignum operator ^(const Bignum& a) const
 	{
 		Bignum r(*this);
 		r.bit_xor(a);
 		return r;
 	}
-	Bignum operator^=(const Bignum& a)
+	/** Xor assign operator. */
+	Bignum operator ^=(const Bignum& a)
 	{
 		bit_xor(a);
 		return *this;
 	}
-	Bignum operator^(uint32_t a) const
+	/** Xor operator. */
+	Bignum operator ^(uint32_t a) const
 	{
 		Bignum r(*this);
 		Bignum b(a);
 		r.bit_xor(b);
 		return r;
 	}
-	Bignum operator^=(uint32_t a)
+	/** Xor assign operator. */
+	Bignum operator ^=(uint32_t a)
 	{
 		Bignum b(a);
 		bit_xor(b);
 		return *this;
 	}
-	/** Not operator */
-	Bignum operator~() const
+	/** Not operator. */
+	Bignum operator ~() const
 	{
 		Bignum r(*this);
 		r.bit_not();
@@ -645,12 +696,17 @@ public:
 /** Googletest printer. */
 void PrintTo(const Bignum&, std::ostream*);
 
-}	// namespace
+}
 
-std::ostream& operator<<(std::ostream&, const scc::crypto::Bignum&);
+/** Print the bignum to a stream. */
+std::ostream& operator <<(std::ostream&, const scc::crypto::Bignum&);
+/** Exponent helper. */
 scc::crypto::Bignum exp(const scc::crypto::Bignum&, const scc::crypto::Bignum&);
+/** Exponent helper. */
 scc::crypto::Bignum exp(const scc::crypto::Bignum&, uint32_t);
+/** Greatest common divisor helper. */
 scc::crypto::Bignum gcd(const scc::crypto::Bignum&, const scc::crypto::Bignum&);
+/** Greatest common divisor helper. */
 scc::crypto::Bignum gcd(const scc::crypto::Bignum&, uint32_t);
 
 #endif

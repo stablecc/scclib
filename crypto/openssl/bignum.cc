@@ -107,7 +107,7 @@ Bignum gcd(const Bignum& a, uint32_t b)
 	return r;
 }
 
-std::ostream& operator<<(std::ostream& os, const scc::crypto::Bignum& sa)
+std::ostream& operator <<(std::ostream& os, const scc::crypto::Bignum& sa)
 {
 	std::string s;
 

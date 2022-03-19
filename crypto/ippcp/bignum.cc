@@ -37,6 +37,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <vector>
 #include <cstring>
 #include <crypto/random.h>
+#include <crypto/secvec.h>
 #include <ippcp.h>
 
 // Uses table 4.4 from he Handbook of Applied Cryptography [Menezes, van Oorschot, Vanstone; CRC Press 1996]
@@ -68,7 +69,7 @@ static void throwErr(const std::string& msg, int err)
 
 struct BignumCtx
 {
-	std::vector<uint8_t> m_buf;
+	scc::crypto::SecVecUchar m_buf;
 	
 	int m_bnwords;					 	// size in words of the bn (according to ipp)
 
@@ -78,7 +79,6 @@ struct BignumCtx
 	}
 	virtual ~BignumCtx()
 	{
-		explicit_bzero(&m_buf[0], m_buf.size());
 	}
 
 	IppsBigNumState* bn()
@@ -101,8 +101,6 @@ struct BignumCtx
 		{
 			throwErr("ippsBigNumGetSize", r);
 		}
-		
-		explicit_bzero(&m_buf[0], m_buf.size());		// zero original before resizing
 		
 		m_buf.resize(size);
 
@@ -159,7 +157,7 @@ Bignum gcd(const Bignum& a, uint32_t b)
 	return r;
 }
 
-std::ostream& operator<<(std::ostream& os, const scc::crypto::Bignum& sa)
+std::ostream& operator <<(std::ostream& os, const scc::crypto::Bignum& sa)
 {
 	std::string s;
 
@@ -624,8 +622,7 @@ bool Bignum::is_prime(int trials)
 		throwErr("ippsPrimeGetSize", r);
 	}
 
-	std::vector<uint8_t> buf;
-	buf.resize(size);
+	scc::crypto::SecVecUchar buf(size);
 
 	if ((r = ippsPrimeInit(width(), (IppsPrimeState*)buf.data())) != ippStsNoErr)
 	{
@@ -639,8 +636,6 @@ bool Bignum::is_prime(int trials)
 	{
 		throwErr("ippsPrimeTest_BN", r);
 	}
-
-	explicit_bzero(&buf[0], buf.size());
 
 	return result == IS_PRIME ? true : false;
 }
@@ -659,8 +654,7 @@ void Bignum::gen_prime(int bit_width)
 		throwErr("ippsPrimeGetSize", r);
 	}
 
-	std::vector<uint8_t> buf;
-	buf.resize(size);
+	scc::crypto::SecVecUchar buf(size);
 
 	if ((r = ippsPrimeInit(bit_width, (IppsPrimeState*)buf.data())) != ippStsNoErr)
 	{
@@ -682,8 +676,6 @@ void Bignum::gen_prime(int bit_width)
 	{
 		throwErr("ippsPRNGen_BN", r);
 	}
-
-	explicit_bzero(&buf[0], buf.size());
 }
 
 int Bignum::len() const

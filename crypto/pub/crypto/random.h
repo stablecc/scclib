@@ -113,7 +113,7 @@ public:
 	/** Required for UniformRandomBitGenerator interface. */
 	typedef uint32_t result_type;
 	/** Required for UniformRandomBitGenerator interface. */
-	uint32_t operator()()
+	uint32_t operator ()()
 	{
 		return rand_uint32();
 	}

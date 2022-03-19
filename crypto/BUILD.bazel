@@ -16,24 +16,30 @@ cc_library(
 			"openssl/bignum.cc",
 			"openssl/random.cc",
 		],
-	}),
+	}) + [
+		"secvec.cc",
+		"uuid.cc",
+	],
 	hdrs = [
-		"pub/crypto/random.h",
 		"pub/crypto/bignum.h",
+		"pub/crypto/random.h",
+		"pub/crypto/secvec.h",
+		"pub/crypto/uuid.h",
 	],
 	includes = [
 		"pub",
 	],
 	copts = ["-std=c++17"],
-	deps = [
-		"@com_stablecc_scclib//util:sccutillib"
-	] + select({
+	deps = select({
 		":ippcp": [
 			"@com_stablecc_scclib_ippcp//:importippcplib",
 		],
 		"//conditions:default": [
 			"@com_stablecc_scclib_openssl//:importopenssllib",
 		],
-	}),
+	}) + [
+		"@com_stablecc_scclib//util:sccutillib",
+		"@com_stablecc_scclib//encode:sccencodelib",
+	],
 	visibility = ["//visibility:public"],
 )

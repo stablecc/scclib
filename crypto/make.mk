@@ -40,6 +40,7 @@ include $(BASE)/import/openssl/make.mk
 endif
 
 include $(BASE)/util/make.mk
+include $(BASE)/encode/make.mk
 
 ifeq ($(BLDTYPE),debug)
 SLIBS := -lscccryptod $(SLIBS)

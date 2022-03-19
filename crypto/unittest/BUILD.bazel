@@ -4,6 +4,8 @@ cc_test(
 	srcs = [
 		"bignum.cc",
 		"random.cc",
+		"secvec.cc",
+		"uuid.cc",
 	],
 	copts = ["-std=c++17"],
 	deps = [
