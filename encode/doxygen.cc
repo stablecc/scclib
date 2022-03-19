@@ -5,8 +5,6 @@
 
 	Utilities to support data encoding.
 	
-	Depends on:
-		- \ref util
-		- \ref ipp_import
+	Depends on \ref util.
 */
 /** @} */

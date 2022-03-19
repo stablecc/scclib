@@ -1,6 +1,6 @@
-# scc::net encoding module
+# encoding scc::encode
 
-See \ref encoding.
+See \ref encode.
 
 ## dependencies
 

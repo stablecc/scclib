@@ -1,4 +1,4 @@
-# scc::net Networking Module
+# networking scc::net
 
 See \ref net.
 
@@ -9,6 +9,6 @@ sockaddr.host("::ffff:127.0.0.1");
 
 Ipv4 broadcast networking is not supported.
 
-## Dependencies
+## dependencies
 
 This module depends on the scclib [util](../util) module.  Does not depend on any linux package.

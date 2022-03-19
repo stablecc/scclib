@@ -1,4 +1,4 @@
-# scc::net cryptography module
+# cryptography scc::crypto
 
 See \ref crypto.
 
@@ -9,7 +9,7 @@ This module depends on the scclib [util](../util) module.
 The module also depends on [OpenSSL](https://github.com/stablecc/scclib-openssl) or
 [Intel ippcp](https://github.com/stablecc/scclib-ippcp) depending on build parameters.
 
-### ippcp with Bazel
+### ippcp with bazel
 
 OpenSSL is the default. To use ippcp, use the following command line:
 ```
@@ -22,7 +22,7 @@ build --define ipp=on
 
 Requires the Intel IPP Cryptography library to be installed under `/opt/intel`.
 
-### ippcp with GNU make
+### ippcp with gnu make
 
 OpenSSL is the default. To build the libraries with ippcp, use the following command line:
 ```

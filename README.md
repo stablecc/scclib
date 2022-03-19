@@ -1,5 +1,5 @@
 \mainpage scclib Documentation
-# Stable Cloud Computing library (scclib)
+# stable cloud computing library (scclib)
 
 Standalone C++ general purpose library which designed to work in any system with the following:
 * [Linux](https://www.linux.org/)
@@ -14,7 +14,7 @@ with older versions of Bazel.
 
 An alternative [build system](make/) using GNU make is available, for systems without Bazel.
 
-## Installation
+## installation
 
 1. [Install bazel](install_bazel.md) on your local system.
 
@@ -27,7 +27,7 @@ bazel test @com_stablecc_scclib//net/unittest:sccnetunit # unit tests for net mo
 bazel build @com_stablecc_scclib//examples/net:ntest # network test example executable
 ```
 
-## Documentation
+## documentation
 
 Scclib code is fully documented using [doxygen](https://www.doxygen.nl/index.html).
 
@@ -46,7 +46,7 @@ docs/html/index.html
 Current documentation is available on
 [stablecc.github.io](https://stablecc.github.io/scclib-doxygen/).
 
-## Licensing
+## licensing
 
 Source:
 * [BSD 3-Clause License](LICENSE)

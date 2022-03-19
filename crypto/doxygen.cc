@@ -1,10 +1,8 @@
 // For doxygen documentation
 
-/** \defgroup crypto Cryptographic utilities
+/** \defgroup crypto cryptography
 	@{
 
-	Depends on:
-		- \ref util
-		- Either \ref ippcp or \ref openssl
+	Depends on \ref util and either [OpenSSL](https://github.com/stablecc/scclib-openssl) or [Intel ippcp](https://github.com/stablecc/scclib-ippcp).
 */
 /** @} */

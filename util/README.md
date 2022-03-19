@@ -1,7 +1,7 @@
-# scc::util General Utilities Module
+# general utilities scc::util 
 
 See \ref util.
 
-## Dependencies
+## dependencies
 
 This module does not depend on any scclib library or linux package.

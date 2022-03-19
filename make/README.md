@@ -1,4 +1,4 @@
-# GNU make
+# gnu make
 
 A build system using [GNU make](https://www.gnu.org/software/make/) is provided for
 environments where Bazel is not available.

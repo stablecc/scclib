@@ -1,6 +1,6 @@
 // For doxygen documentation
 
-/** \defgroup util General utilities
+/** \defgroup util general utilities
 	@{
 */
 /** @} */
