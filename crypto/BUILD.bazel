@@ -1,0 +1,39 @@
+config_setting(
+	name = "ippcp",
+	define_values = {
+		"ipp": "on",
+	},
+)
+
+cc_library(
+	name = "scccryptolib",
+	srcs = select({
+		":ippcp": [
+			"ippcp/bignum.cc",
+			"ippcp/random.cc",
+		],
+		"//conditions:default": [
+			"openssl/bignum.cc",
+			"openssl/random.cc",
+		],
+	}),
+	hdrs = [
+		"pub/crypto/random.h",
+		"pub/crypto/bignum.h",
+	],
+	includes = [
+		"pub",
+	],
+	copts = ["-std=c++17"],
+	deps = [
+		"@com_stablecc_scclib//util:sccutillib"
+	] + select({
+		":ippcp": [
+			"@com_stablecc_scclib_ippcp//:importippcplib",
+		],
+		"//conditions:default": [
+			"@com_stablecc_scclib_openssl//:importopenssllib",
+		],
+	}),
+	visibility = ["//visibility:public"],
+)

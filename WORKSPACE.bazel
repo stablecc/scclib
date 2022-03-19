@@ -33,6 +33,27 @@ http_archive(
 	urls = ["https://github.com/google/benchmark/archive/0d98dba29d66e93259db7daa53a9327df767a415.zip"],
 )
 
+# https://github.com/stablecc/scclib-openssl
+http_archive(
+	name = "com_stablecc_scclib_openssl",
+	strip_prefix = "scclib-openssl-master",
+	urls = ["https://github.com/stablecc/scclib-openssl/archive/refs/heads/master.zip"],
+)
+
+# https://github.com/stablecc/scclib-ipp
+http_archive(
+	name = "com_stablecc_scclib_ipp",
+	strip_prefix = "scclib-ipp-master",
+	urls = ["https://github.com/stablecc/scclib-ipp/archive/refs/heads/master.zip"],
+)
+
+# https://github.com/stablecc/scclib-ippcp
+http_archive(
+	name = "com_stablecc_scclib_ippcp",
+	strip_prefix = "scclib-ippcp-master",
+	urls = ["https://github.com/stablecc/scclib-ippcp/archive/refs/heads/master.zip"],
+)
+
 # Intel IPP library (see intel.txt)
 new_local_repository(
 	name = "import_ipp",

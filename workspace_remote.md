@@ -33,4 +33,34 @@ http_archive(
     strip_prefix = "benchmark-0d98dba29d66e93259db7daa53a9327df767a415",
     urls = ["https://github.com/google/benchmark/archive/0d98dba29d66e93259db7daa53a9327df767a415.zip"],
 )
+
+http_archive(
+    name = "com_stablecc_scclib_openssl",
+    strip_prefix = "scclib-openssl-master",
+    urls = ["https://github.com/stablecc/scclib-openssl/archive/refs/heads/master.zip"],
+)
+
+http_archive(
+    name = "com_stablecc_scclib_ipp",
+    strip_prefix = "scclib-ipp-master",
+    urls = ["https://github.com/stablecc/scclib-ipp/archive/refs/heads/master.zip"],
+)
+
+http_archive(
+    name = "com_stablecc_scclib_ippcp",
+    strip_prefix = "scclib-ippcp-master",
+    urls = ["https://github.com/stablecc/scclib-ippcp/archive/refs/heads/master.zip"],
+)
+
+new_local_repository(
+    name = "import_ipp",
+    path = "/opt/intel/ipp",
+    build_file = "ipp.BUILD.bazel",
+)
+
+new_local_repository(
+    name = "import_ippcp",
+    path = "/opt/intel/ippcp",
+    build_file = "ippcp.BUILD.bazel",
+)
 ```

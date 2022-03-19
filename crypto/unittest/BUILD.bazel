@@ -1,0 +1,14 @@
+cc_test(
+	name = "scccryptounit",
+	size = "small",
+	srcs = [
+		"bignum.cc",
+		"random.cc",
+	],
+	copts = ["-std=c++17"],
+	deps = [
+		"@com_google_googletest//:gtest_main",
+		"@com_stablecc_scclib//crypto:scccryptolib",
+		"@com_stablecc_scclib//encode:sccencodelib",
+	],
+)

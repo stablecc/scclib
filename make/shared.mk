@@ -46,6 +46,9 @@ ifndef ARCH
 ARCH := native
 endif
 
+# default is to use openssl library for cryptography
+IPP := off
+
 # choose minimal flags to get the job done
 
 CXXFLAGS += -march=$(ARCH) -pipe -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++17
