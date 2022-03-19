@@ -50,51 +50,88 @@ namespace scc::encode {
 	\file
 */
 
-/** Encode to hex from binary.
+class Hex
+{
+public:
+	/** Encode to hex from binary.
 
-	Encodes using two characters per byte.
+		Encodes using two characters per byte.
 
-	\param bin Binary input.
-	\param hex String output.
-	\param lower_case Output lower case flag.
-*/
+		\param bin Binary input.
+		\param hex String output.
+		\param lower_case Output lower case flag.
+	*/
+	static void bin_to_hex(const std::vector<char>&, std::string&, bool = true);
+	
+	/** Encode to hex from binary.
 
-void bin_to_hex(const std::vector<char>&, std::string&, bool = true);
-void bin_to_hex(const void*, size_t, std::string&, bool = true);
+		Encodes using two characters per byte.
 
-/** Encode to hex from binary.
+		\param loc Binary input buffer.
+		\param len Binary input buffer size.
+		\param hex String output.
+		\param lower_case Output lower case flag.
+	*/
+	static void bin_to_hex(const void*, size_t, std::string&, bool = true);
 
-	Encodes using two characters per byte.
+	/** Encode to hex from binary.
 
-	\param bin Binary input.
-	\param lower_case Output lower case flag.
+		Encodes using two characters per byte.
 
-	\returns Hex string output.
-*/
-std::string bin_to_hex(const std::vector<char>&, bool = true);
-std::string bin_to_hex(const void*, size_t, bool = true);
+		\param bin Binary input.
+		\param lower_case Output lower case flag.
 
-/** Decode from hex to binary.
+		\returns Hex string output.
+	*/
+	static std::string bin_to_hex(const std::vector<char>&, bool = true);
+	
+	/** Encode to hex from binary.
 
-	Encodes using two characters per byte.
+		Encodes using two characters per byte.
 
-	\param hex string input.
-	\param bin Binary output.
-*/
-void hex_to_bin(const std::string&, std::vector<char>&);
+		\param loc Binary input buffer.
+		\param len Binary input buffer size.
+		\param lower_case Output lower case flag.
 
-/** Binary to human readable string.
-	\param bin Binary input.
-	\param lower_case Output lower case flag.
-	\param delimit Delimiter for output (placed between bytes)
-	\param limit Limit in bytes (< 0 means no limit)
-	\param limit_msg Message to add if limit exceeded
-	\param lower_case Use lower case
+		\returns Hex string output.
+	*/
+	static std::string bin_to_hex(const void*, size_t, bool = true);
 
-	Output message of form HH<delimit>HH<delimit>[limit_msg]
-*/
-std::string bin_to_hexstr(const std::vector<char>&, const std::string& = "", int limit=-1, const std::string& = " +more", bool = true);
-std::string bin_to_hexstr(const void*, size_t, const std::string& = "", int limit=-1, const std::string& = " +more", bool = true);
+	/** Decode from hex to binary.
+
+		Encodes using two characters per byte.
+
+		\param hex string input.
+		\param bin Binary output.
+	*/
+	static void hex_to_bin(const std::string&, std::vector<char>&);
+
+	/** Binary to human readable string.
+		\param bin Binary input.
+		\param lower_case Output lower case flag.
+		\param delimit Delimiter for output (placed between bytes)
+		\param limit Limit in bytes (< 0 means no limit)
+		\param limit_msg Message to add if limit exceeded
+		\param lower_case Use lower case
+
+		Output message of form HH<delimit>HH<delimit>[limit_msg]
+	*/
+	static std::string bin_to_hexstr(const std::vector<char>&, const std::string& = "", int limit=-1, const std::string& = " +more", bool = true);
+	
+	/** Binary to human readable string.
+
+		\param loc Binary input buffer.
+		\param len Binary input buffer size.
+		\param lower_case Output lower case flag.
+		\param delimit Delimiter for output (placed between bytes)
+		\param limit Limit in bytes (< 0 means no limit)
+		\param limit_msg Message to add if limit exceeded
+		\param lower_case Use lower case
+
+		Output message of form HH<delimit>HH<delimit>[limit_msg]
+	*/
+	static std::string bin_to_hexstr(const void*, size_t, const std::string& = "", int limit=-1, const std::string& = " +more", bool = true);
+};
 
 /** @} */
 /** @} */

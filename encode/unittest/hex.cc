@@ -46,9 +46,7 @@ using CharVec = std::vector<char>;
 using std::string;
 using std::cout;
 using std::endl;
-using scc::encode::bin_to_hex;
-using scc::encode::bin_to_hexstr;
-using scc::encode::hex_to_bin;
+using scc::encode::Hex;
 
 TEST(hex, hex_to_bin_all)
 {
@@ -58,23 +56,23 @@ TEST(hex, hex_to_bin_all)
 		allbin[i] = (char)i;
 	}
 	string hex;
-	bin_to_hex(allbin, hex);
+	Hex::bin_to_hex(allbin, hex);
 	cout << "Hex: " << hex << endl;
 	ASSERT_EQ(hex.size(), 512);
 
 	CharVec newbin;
-	hex_to_bin(hex, newbin);
+	Hex::hex_to_bin(hex, newbin);
 	ASSERT_EQ(newbin.size(), 256);
 	ASSERT_EQ(allbin, newbin);
 
 	cout << "bin to hex string:" << endl;
-	cout << bin_to_hexstr(allbin, ":", 20) << endl;
+	cout << Hex::bin_to_hexstr(allbin, ":", 20) << endl;
 }
 
 TEST(hex, zero)
 {
 	string z, s;
-	bin_to_hex(CharVec(z.begin(), z.end()), s);
+	Hex::bin_to_hex(CharVec(z.begin(), z.end()), s);
 	ASSERT_EQ(s.size(), 0);
 }
 
@@ -83,7 +81,7 @@ TEST(hex, bin_to_hex)
 	string bin = "this is a test";
 	string hex1 = "7468697320697320612074657374";
 	string hex2;
-	bin_to_hex(CharVec(bin.begin(), bin.end()), hex2);
+	Hex::bin_to_hex(CharVec(bin.begin(), bin.end()), hex2);
 	ASSERT_EQ(hex1, hex2);
 }
 
@@ -92,7 +90,7 @@ TEST(hex, hex_to_bin_part)
 	string corrupthex = "7468697......!";
 	string validbin = "thi";
 	CharVec bin, val(validbin.begin(), validbin.end());
-	hex_to_bin(corrupthex, bin);
+	Hex::hex_to_bin(corrupthex, bin);
 	ASSERT_EQ(val, bin);
 }
 

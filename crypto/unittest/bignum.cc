@@ -40,8 +40,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /** \example crypto/unittest/bignum.cc */
 /** @} */
 
-using namespace std;
-using namespace scc::encode;
+using std::cout;
+using std::endl;
+using std::vector;
+using std::runtime_error;
+using scc::encode::Hex;
 using scc::crypto::Bignum;
 
 TEST(bignum_test, init)
@@ -649,7 +652,7 @@ TEST(bignum_test, get)
 	{
 		v.resize(a.len());
 		a.get((void*)v.data(), v.size());
-		cout << "a = " << a << " get hex " << bin_to_hexstr(v, " ") << endl;
+		cout << "a = " << a << " get hex " << Hex::bin_to_hexstr(v, " ") << endl;
 	};
 
 	get_test();
@@ -673,7 +676,7 @@ TEST(bignum_test, get_2sc)
 		cout << "a = " << a << " len_2sc() = " << a.len_2sc() << endl;
 		v.resize(a.len_2sc());
 		a.get_2sc((void*)v.data(), v.size());
-		cout << "a = " << a << " get hex " << bin_to_hexstr(v, " ") << endl;
+		cout << "a = " << a << " get hex " << Hex::bin_to_hexstr(v, " ") << endl;
 		ASSERT_EQ(v, chk);
 	};
 /*

@@ -34,10 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using namespace scc::encode;
 
-namespace scc {
-namespace encode {
-
-void bin_to_hex(const void* xloc, size_t len, std::string& hex, bool lower_case)
+void Hex::bin_to_hex(const void* xloc, size_t len, std::string& hex, bool lower_case)
 {
 	char* loc = (char*)xloc;
 
@@ -74,7 +71,7 @@ void bin_to_hex(const void* xloc, size_t len, std::string& hex, bool lower_case)
 	}
 }
 
-std::string bin_to_hexstr(const void* loc, size_t len, const std::string& delimit, int limit, const std::string& limit_msg, bool lower_case)
+std::string Hex::bin_to_hexstr(const void* loc, size_t len, const std::string& delimit, int limit, const std::string& limit_msg, bool lower_case)
 {
 	std::string hex;
 	bin_to_hex(loc, len, hex, lower_case);
@@ -102,31 +99,31 @@ std::string bin_to_hexstr(const void* loc, size_t len, const std::string& delimi
 	return s.str();
 }
 
-std::string bin_to_hexstr(const std::vector<char>& bin, const std::string& delimit, int limit, const std::string& limit_msg, bool lower_case)
+std::string Hex::bin_to_hexstr(const std::vector<char>& bin, const std::string& delimit, int limit, const std::string& limit_msg, bool lower_case)
 {
 	return bin_to_hexstr(bin.data(), bin.size(), delimit, limit, limit_msg, lower_case);
 }
 
-void bin_to_hex(const std::vector<char>& bin, std::string& hex, bool lower_case)
+void Hex::bin_to_hex(const std::vector<char>& bin, std::string& hex, bool lower_case)
 {
 	bin_to_hex(bin.data(), bin.size(), hex, lower_case);
 }
 
-std::string bin_to_hex(const void* loc, size_t len, bool lower_case)
+std::string Hex::bin_to_hex(const void* loc, size_t len, bool lower_case)
 {
 	std::string s;
 	bin_to_hex(loc, len, s, lower_case);
 	return s;
 }
 
-std::string bin_to_hex(const std::vector<char>& bin, bool lower_case)
+std::string Hex::bin_to_hex(const std::vector<char>& bin, bool lower_case)
 {
 	std::string s;
 	bin_to_hex(bin, s, lower_case);
 	return s;
 }
 
-void hex_to_bin(const std::string& hex, std::vector<char>& bin)
+void Hex::hex_to_bin(const std::string& hex, std::vector<char>& bin)
 {
 	bin.resize(hex.size()/2);
 
@@ -174,7 +171,4 @@ void hex_to_bin(const std::string& hex, std::vector<char>& bin)
 		stor++;
 	}
 	bin.resize(stor);
-}
-
-}
 }
