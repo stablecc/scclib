@@ -10,3 +10,6 @@
 [submodule "import/openssl"]
 	path = import/openssl
 	url = https://github.com/stablecc/scclib-openssl.git
+[submodule "import/zlib"]
+	path = import/zlib
+	url = https://github.com/stablecc/scclib-zlib.git
