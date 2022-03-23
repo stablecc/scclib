@@ -13,3 +13,6 @@
 [submodule "import/zlib"]
 	path = import/zlib
 	url = https://github.com/stablecc/scclib-zlib.git
+[submodule "import/sqlite"]
+	path = import/sqlite
+	url = https://github.com/stablecc/scclib-sqlite.git

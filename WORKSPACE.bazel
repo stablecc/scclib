@@ -1,10 +1,27 @@
-#
-# workspace file that provides @com_stablecc_scclib from the project root
-#
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+#
+# provides @com_stablecc_scclib from the project root
+# do not use if this workspace file is outside the project root
+#
 workspace(name = "com_stablecc_scclib")
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+#
+# use scclib from an http archive
+#
+#http_archive(
+#	name = "com_stablecc_scclib",
+#	strip_prefix = "scclib-master",
+#	urls = ["https://github.com/stablecc/scclib/archive/refs/heads/master.zip"],
+#)
+
+#
+# use scclib as a local repository
+#
+#local_repository(
+#	name = "com_stablecc_scclib",
+#	path = "/path/to/scclib",
+#)
 
 # https://github.com/bazelbuild/rules_python/releases/tag/0.6.0
 http_archive(
@@ -47,13 +64,6 @@ http_archive(
 	urls = ["https://github.com/stablecc/scclib-ipp/archive/refs/heads/master.zip"],
 )
 
-# https://github.com/stablecc/scclib-ippcp
-http_archive(
-	name = "com_stablecc_scclib_ippcp",
-	strip_prefix = "scclib-ippcp-master",
-	urls = ["https://github.com/stablecc/scclib-ippcp/archive/refs/heads/master.zip"],
-)
-
 # Intel IPP library (see intel.txt)
 new_local_repository(
 	name = "import_ipp",
@@ -61,9 +71,30 @@ new_local_repository(
 	build_file = "ipp.BUILD.bazel",
 )
 
+# https://github.com/stablecc/scclib-ippcp
+http_archive(
+	name = "com_stablecc_scclib_ippcp",
+	strip_prefix = "scclib-ippcp-master",
+	urls = ["https://github.com/stablecc/scclib-ippcp/archive/refs/heads/master.zip"],
+)
+
 # Intel IPP Cryptography library (see intel.txt)
 new_local_repository(
 	name = "import_ippcp",
 	path = "/opt/intel/ippcp",
 	build_file = "ippcp.BUILD.bazel",
+)
+
+# https://github.com/stablecc/scclib-zlib
+http_archive(
+	name = "com_stablecc_scclib_zlib",
+	strip_prefix = "scclib-zlib-master",
+	urls = ["https://github.com/stablecc/scclib-zlib/archive/refs/heads/master.zip"],
+)
+
+# https://github.com/stablecc/scclib-sqlite
+http_archive(
+	name = "com_stablecc_scclib_sqlite",
+	strip_prefix = "scclib-sqlite-master",
+	urls = ["https://github.com/stablecc/scclib-sqlite/archive/refs/heads/master.zip"],
 )
