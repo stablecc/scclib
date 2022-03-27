@@ -7,25 +7,33 @@ Standalone c++ general purpose library which designed to work in any system with
 * A GCC compiler with support for Standard C++ 17. See
 [cppreference](https://en.cppreference.com/w/cpp/17).
 
-The library should be compatible with many POSIX emulation environments such as
+The library was designed to be compatible with many POSIX emulation environments such as
 [cygwin](https://www.cygwin.com/), but it was developed and tested
 primarily on Linux using GCC 9+. It was developed using Bazel 4.2+, but should be compatible
 with older versions of Bazel.
 
 An alternative [build system](make/) using GNU make is available, for systems without Bazel.
 
-## installation
+## quickstart
+
+[Install bazel](install_bazel.md) on your local system, download the source code,
+and run the following from the ```scclib``` directory:
+```
+bazel clean --expunge
+$ ./sanity.sh
+```
+If you have Intel IPP and IPPCP on your system, try:
+```
+$ ./sanity.sh ipp
+```
+
+## full installation
 
 1. [Install bazel](install_bazel.md) on your local system.
 
 2. Set up a workspace, either [remotely](workspace_remote.md) or [locally](workspace_local.md).
 
-3. Run sanity tests to make sure things are working:
-```
-bazel test @com_stablecc_scclib//util/unittest:sccutilunit # unit tests for util module
-bazel test @com_stablecc_scclib//net/unittest:sccnetunit # unit tests for net module
-bazel build @com_stablecc_scclib//examples/net:ntest # network test example executable
-```
+3. Run sanity tests to make sure things are working (using [sanity.sh](sanity.sh)).
 
 ## documentation
 
