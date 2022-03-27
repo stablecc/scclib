@@ -54,5 +54,5 @@ Source:
 * [BSD 3-Clause License](LICENSE)
 
 Redistribution:
-* [OpenSSL and SSLeay Licenses](openssl.txt)
-* [Intel Simplified Software License](intel.txt)
+* [OpenSSL and SSLeay Licenses](lic/openssl.txt)
+* [Intel Simplified Software License](lic/intel.txt)
