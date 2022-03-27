@@ -1,4 +1,4 @@
-\mainpage scclib Documentation
+\mainpage scclib documentation
 # stable cloud computing library (scclib)
 
 Standalone C++ general purpose library which designed to work in any system with the following:
@@ -29,6 +29,11 @@ bazel build @com_stablecc_scclib//examples/net:ntest # network test example exec
 
 ## documentation
 
+Current documentation is available on
+[stablecc.github.io](https://stablecc.github.io/scclib-doxygen/).
+
+### generating doxygen documentation
+
 Scclib code is fully documented using [doxygen](https://www.doxygen.nl/index.html).
 
 When you have doxygen available, run the following command line after downloading the source
@@ -42,9 +47,6 @@ The docs will be created in the `docs/` directory:
 $ ls docs/html/index.html 
 docs/html/index.html
 ```
-
-Current documentation is available on
-[stablecc.github.io](https://stablecc.github.io/scclib-doxygen/).
 
 ## licensing
 
