@@ -1,7 +1,7 @@
 \mainpage scclib documentation
 # stable cloud computing library (scclib)
 
-Standalone C++ general purpose library which designed to work in any system with the following:
+Standalone c++ general purpose library which designed to work in any system with the following:
 * [Linux](https://www.linux.org/)
 * [The Bazel build system](https://bazel.build/).
 * A GCC compiler with support for Standard C++ 17. See
@@ -50,9 +50,11 @@ docs/html/index.html
 
 ## licensing
 
-Source:
+Original source:
 * [BSD 3-Clause License](LICENSE)
 
-Redistribution:
-* [OpenSSL and SSLeay Licenses](lic/openssl.txt)
-* [Intel Simplified Software License](lic/intel.txt)
+External and redistributable:
+* [openssl](lic/openssl.txt)
+* [ipp and ippcp](lic/intel.txt)
+* [zlib](lic/zlib.txt)
+* [sqlite](lic/sqlite.txt)
