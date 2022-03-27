@@ -106,6 +106,16 @@ std::ostream& operator<<(std::ostream& os, FileStat s)
 	return os;
 }
 
+void scc::util::PrintTo(const FileStat& v, std::ostream* os)
+{
+	*os << v;
+}
+
+void scc::util::PrintTo(const FileType& v, std::ostream* os)
+{
+	*os << v;
+}
+
 bool scc::util::default_scan_filter(const std::string& name, FileType type)
 {
 	if (type == FileType::dir && (name == "." || name == ".."))
@@ -543,22 +553,20 @@ std::map<off_t, off_t>  Filesystem::sparse_map(const std::string& name, std::sys
 	};
 	
 	struct stat st;
-	if (fstat(fd, &st) < 0)		return throw_err();
-
-//std::cout << "size=" << st.st_size << std::endl;
+	if (fstat(fd, &st) < 0)
+	{
+		return throw_err();
+	}
 
 	off_t idx = 0;
 	off_t starth = -1;
 	while (1)
 	{
 		off_t h = lseek(fd, idx, SEEK_HOLE);		// find next hole
-//std::cout << "idx=" << idx << " hole=" << h << std::endl;
 
 		if (h < 0)
 		{
-//std::cout << "idx=" << idx << " hole=" << h << std::endl;
-			throw_err();
-//			break;
+			return throw_err();
 		}
 
 		if (h == idx)		// start of hole
@@ -566,11 +574,9 @@ std::map<off_t, off_t>  Filesystem::sparse_map(const std::string& name, std::sys
 			starth = idx;
 			
 			int d = lseek(fd, idx, SEEK_DATA);		// find next data
-//std::cout << "idx=" << idx << " data=" << d << std::endl;
 
 			if (d < 0)		// hole at the end of file
 			{
-//std::cout << "idx=" << idx << " data=" << d << std::endl;
 				ret.emplace(starth, st.st_size-1);
 				break;
 			}
@@ -622,24 +628,41 @@ void Filesystem::set_size(const std::string& name, off_t size, std::system_error
 		{
 			*err = e;
 			safe_close(fd);
+			return;
 		}
 		safe_close(fd);
 		throw e;
 	};
 
 	struct stat st;
-	if (fstat(fd, &st) < 0)			throw_err();
+	if (fstat(fd, &st) < 0)
+	{
+		throw_err();
+		return;
+	}
 
 	if (size < st.st_size)
 	{
-		if (safe_ftruncate(fd, size) < 0)		throw_err();
+		if (safe_ftruncate(fd, size) < 0)
+		{
+			throw_err();
+			return;
+		}
 	}
 	else if (size > st.st_size)
 	{
 		// set the file pointer to the desired size
-		if (lseek(fd, size-1, SEEK_SET) == -1)		throw_err();
+		if (lseek(fd, size-1, SEEK_SET) == -1)
+		{
+			throw_err();
+			return;
+		}
 		// write out the sparse file (0 at the end)
-		if (safe_write(fd, "", 1) < 0)				throw_err();
+		if (safe_write(fd, "", 1) < 0)
+		{
+			throw_err();
+			return;
+		}
 	}
 
 	safe_close(fd);

@@ -1,10 +1,10 @@
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 #
 # provides @com_stablecc_scclib from the project root
 # do not use if this workspace file is outside the project root
 #
 workspace(name = "com_stablecc_scclib")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 #
 # use scclib from an http archive

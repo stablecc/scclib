@@ -125,8 +125,7 @@ TEST_F(FsTest, filter)
 	auto files = fs::scan_dir("sandbox", reg_filt);
 	ASSERT_EQ(files.size(), 1);
 	ASSERT_EQ(files.begin()->first, "reg");
-//	ASSERT_EQ(files.begin()->second, FileType::reg);  // some problem googletest has with ostream conversion...
-	ASSERT_TRUE(files.begin()->second == FileType::reg);
+	ASSERT_EQ(files.begin()->second, FileType::reg);
 }
 
 //! [Scan directory]
@@ -168,14 +167,14 @@ TEST_F(FsTest, create_types)
 		cout << "sandbox/" << f.first << " type: " << f.second << ":" << endl;
 		auto ty = fs::file_stat(f.first);
 		cout << ty << endl;
-		ASSERT_TRUE(f.second == ty.type);
+		ASSERT_EQ(f.second, ty.type);
 	}
 
 	ASSERT_EQ(fs::read_symlink("link"), "reg");
 
 	auto ty = fs::file_stat("/dev/null");
 	cout << "/dev/zero " << ty << endl;
-	ASSERT_TRUE(ty.type == FileType::chr);
+	ASSERT_EQ(ty.type, FileType::chr);
 
 	fs::change_dir("/dev");
 	d = fs::scan_dir(".");
@@ -186,7 +185,7 @@ TEST_F(FsTest, create_types)
 	ASSERT_NE(i, d.end());
 	ty = fs::file_stat(i->first);
 	cout << "/dev/" << i->first << " " << ty << endl;
-	ASSERT_TRUE(ty.type == FileType::block);
+	ASSERT_EQ(ty.type, FileType::block);
 }
 
 TEST_F(FsTest, attributes)

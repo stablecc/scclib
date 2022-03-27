@@ -342,8 +342,14 @@ public:
 		return norm_path("", path);
 	}
 };
+
 /** @} */
 /** @} */
+
+/** Googletest printer. */
+void PrintTo(const FileStat&, std::ostream*);
+/** Googletest printer. */
+void PrintTo(const FileType&, std::ostream*);
 }
 
 /** \addtogroup util
