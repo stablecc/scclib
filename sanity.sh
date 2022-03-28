@@ -6,7 +6,7 @@ IPPCMD='--define ipp=on'
 fi
 
 set -e # fail on error
-trap 'echo "last command had exit code $?"' EXIT # run on exit
+trap 'echo "last command had failure code $?"; printf "\u274c\n"' EXIT # run on exit
 set -x # xtrace
 
 #
@@ -44,4 +44,4 @@ bazel test $IPPCMD @com_stablecc_scclib_zlib//unittest:importzlibunit
 set +x
 trap '' EXIT
 echo "Everything worked!"
-printf '\xf0\x9f\x99\x82\n'
+printf "\u2705\n"
