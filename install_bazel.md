@@ -1,12 +1,13 @@
 # Installing bazel
 
-Full details are [here](https://docs.bazel.build/versions/5.0.0/bazel-overview.html#installing-bazel).
-
-An easy way to install in Linux is to use the standalone installer (available with version 5.0.0):
+An easy way to install in Linux is to use the standalone installer (available with version 5.0.0).
+For example, on x86_64 Linux:
 ```
 wget https://github.com/bazelbuild/bazel/releases/download/5.0.0/bazel-5.0.0-installer-linux-x86_64.sh
 chmod +x bazel-5.0.0-installer-linux-x86_64.sh 
 ```
+
+Full installation details are on [bazel.build](https://bazel.build/install).
 
 ## Local user install
 
