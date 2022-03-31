@@ -76,6 +76,7 @@ struct OsslRandInit
 	{
 		uint32_t bigr[16];
 		sys_seed(bigr, 16);
+		seed(bigr, 16);
 		explicit_bzero(bigr, 16);
 	}
 
