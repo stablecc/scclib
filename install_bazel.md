@@ -9,12 +9,13 @@ $ chmod +x bazel-5.1.0-installer-linux-x86_64.sh
 
 Full installation details are on [bazel.build](https://bazel.build/install).
 
-Another way to install is using [the asdf tool manager](https://asdf-vm.com/guide/getting-started.html):
+Another way is using [the asdf tool manager](https://asdf-vm.com/guide/getting-started.html):
 
 ```
 asdf plugin add bazel
 asdf plugin list all bazel
-asdf plugin add bazel 5.1.0
+asdf install bazel latest
+asdf global bazel latest
 ```
 
 ## local user install
