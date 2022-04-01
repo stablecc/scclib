@@ -16,12 +16,12 @@ with older versions of Bazel.
 
 An alternative [build system](make/) using GNU make is available, for systems without Bazel.
 
-## quickstart
+## quick start
 
-[Install bazel](install_bazel.md) on your local system, download the source code,
-and run the following from the ```scclib``` directory:
+Install the [build essentials and OpenSSL development packages](dev_packages.md), [Install bazel](install_bazel.md),
+download the source code, and run the following from the ```scclib``` directory:
 ```
-bazel clean --expunge
+$ bazel clean --expunge
 $ ./sanity.sh
 ```
 If you have Intel IPP and IPPCP on your system, try:
@@ -29,13 +29,16 @@ If you have Intel IPP and IPPCP on your system, try:
 $ ./sanity.sh ipp
 ```
 
-## full installation
+## installation in a local workspace
 
-1. [Install bazel](install_bazel.md) on your local system.
+1. Make sure the [build essentials and OpenSSL development packages](dev_packages.md) are installed and up-to-date.
 
-2. Set up a workspace, either [remotely](workspace_remote.md) or [locally](workspace_local.md).
+2. [Install bazel](install_bazel.md) on your local system.
 
-3. Run sanity tests to make sure things are working (using [sanity.sh](sanity.sh)).
+3. Set up a workspace, either [remotely](workspace_remote.md) or [locally](workspace_local.md).
+
+4. Run the sanity tests to make sure things are working (using [sanity.sh](sanity.sh)).
+
 
 ## documentation
 
