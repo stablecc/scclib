@@ -1,6 +1,6 @@
 # installing bazel
 
-An easy way to install in Linux is to use the standalone installer (available starting with version 5.0.0).
+An easy way to install in Linux (for example) is to use the standalone installer (available starting with version 5.0.0).
 For example, on ```x86_64``` Linux:
 ```
 $ wget https://github.com/bazelbuild/bazel/releases/download/5.1.0/bazel-5.1.0-installer-linux-x86_64.sh
