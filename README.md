@@ -69,6 +69,7 @@ Original source:
 External and redistributable:
 * [openssl](lic/openssl.txt)
 * [googletest](lic/google.txt)
+* [bazel (google)](lic/bazel.txt)
 * [ipp and ippcp](lic/intel.txt)
 * [zlib](lic/zlib.txt)
 * [sqlite](lic/sqlite.txt)
