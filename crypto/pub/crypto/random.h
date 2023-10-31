@@ -111,16 +111,16 @@ public:
 	}
 
 	/** Required for UniformRandomBitGenerator interface. */
-	typedef uint32_t result_type;
+	typedef int result_type;
 	/** Required for UniformRandomBitGenerator interface. */
-	uint32_t operator ()()
+	int operator ()()
 	{
 		return rand_uint32();
 	}
 	/** Required for UniformRandomBitGenerator interface. */
-	uint32_t min() { return 0; }
+	constexpr int min() { return 0; }
 	/** Required for UniformRandomBitGenerator interface. */
-	uint32_t max() { return UINT_MAX; }
+	constexpr int max() { return UINT_MAX; }
 };
 
 /** Helper to safely lock the engine.

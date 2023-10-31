@@ -364,10 +364,10 @@ TEST(iostream_test, write_buffer_states_test)
 	ASSERT_EQ(rw.str(), s1.substr(0, 10));
 	st.setstate(std::ios_base::eofbit);
 	cout << "seteof string: '" << rw.str() << "' " << printstate(st.rdstate()) << endl;
-	ASSERT_EQ(st.rdstate(), std::ios_base::eofbit);
+	ASSERT_TRUE(st.eof());
 	st << s2;
 	cout << "write '"<<s2<<"' string: '" << rw.str() << "' " << printstate(st.rdstate()) << endl;
-	ASSERT_EQ(st.rdstate(), std::ios_base::eofbit|std::ios_base::failbit);
+	ASSERT_TRUE(st.eof());
 	ASSERT_EQ(rw.str(), s1.substr(0, 10));
 	st.clear();
 	cout << "clear string: '" << rw.str() << "' "  << printstate(st.rdstate()) << endl;

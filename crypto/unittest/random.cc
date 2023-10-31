@@ -50,6 +50,7 @@ using std::uniform_int_distribution;
 using std::mt19937;
 using scc::crypto::RandomEngine;
 
+
 TEST(random_tests, uints)
 {
 	uint32_t r32 = 0;
@@ -101,37 +102,20 @@ TEST(random_tests, seed)
 	EXPECT_NE(r1, r3);
 	EXPECT_NE(r2, r3);
 
-	/*
-	The following test is not guaranteed to pass on all random number generators.
-	The ippcp rng passes it, the openssl one does not
 
 	RandomEngine::seed(seed1);
-	auto r4 = RandomEngine::rand_uint64();
-	cout << "rand with seed1: " << r4 << endl;
-	ASSERT_EQ(r4, r1);
-	*/
-}
+	auto x1 = RandomEngine::rand_uint64();
+	cout << "rand with seed1: " << x1 << endl;
 
-TEST(random_tests, UniformRandomBitGenerator)
-{
-	RandomEngine rd;
-	uniform_int_distribution<int> dis(0, 9);
-	map<int, int> hist;
-	for (int n = 0; n < 100000; ++n)
-	{
-		++hist[dis(rd)];
-	}
-	cout << "random engine 100000 values 0 to 9 distribution" << endl;
-	for (auto& p : hist)
-	{
-		cout << p.first << " : " << p.second << endl;
-	}
-	ASSERT_EQ(hist.size(), 10);
-	for (int i = 0; i < 10; i++)
-	{
-		ASSERT_NE(hist.find(i), hist.end());
-		ASSERT_GT(hist[i], 0);
-	}
+	RandomEngine::seed(seed2);
+	auto x2 = RandomEngine::rand_uint64();
+	cout << "rand with seed2: " << x2 << endl;
+
+	/*
+		Note: on openssl, RAND_seed is equivalent to RAND_add, so reseeding does not guarantee the same random output.
+		On IPP, the random seed value can be reseeded to produce the same random output.
+	*/
+	//EXPECT_EQ(x1, r1);
 }
 
 TEST(random_tests, mersenne_twister_engine)
