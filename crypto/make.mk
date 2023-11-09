@@ -29,18 +29,18 @@
 ifndef SCCLIB_CRYPTO
 SCCLIB_CRYPTO := 1
 
-BLDLIBS += $(BASE)/crypto
+BLDLIBS += $(BASE)/scclib/crypto
 
-CPPFLAGS += -isystem $(BASE)/crypto/pub
+CPPFLAGS += -isystem $(BASE)/scclib/crypto/pub
 
 ifeq ($(IPP),on)
-include $(BASE)/import/ippcp/make.mk
+include $(BASE)/scclib-ippcp/make.mk
 else
-include $(BASE)/import/openssl/make.mk
+include $(BASE)/scclib-openssl/make.mk
 endif
 
-include $(BASE)/util/make.mk
-include $(BASE)/encode/make.mk
+include $(BASE)/scclib/util/make.mk
+include $(BASE)/scclib/encode/make.mk
 
 ifeq ($(BLDTYPE),debug)
 SLIBS := -lscccryptod $(SLIBS)

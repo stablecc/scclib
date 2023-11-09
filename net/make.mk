@@ -29,11 +29,11 @@
 ifndef SCCLIB_NET
 SCCLIB_NET := 1
 
-BLDLIBS += $(BASE)/net
+BLDLIBS += $(BASE)/scclib/net
 
-CPPFLAGS += -isystem $(BASE)/net/pub
+CPPFLAGS += -isystem $(BASE)/scclib/net/pub
 
-include $(BASE)/util/make.mk
+include $(BASE)/scclib/util/make.mk
 
 ifeq ($(BLDTYPE),debug)
 SLIBS := -lsccnetd $(SLIBS)

@@ -29,11 +29,11 @@
 ifndef SCCLIB_ENCODE
 SCCLIB_ENCODE := 1
 
-BLDLIBS += $(BASE)/encode
+BLDLIBS += $(BASE)/scclib/encode
 
-CPPFLAGS += -isystem $(BASE)/encode/pub
+CPPFLAGS += -isystem $(BASE)/scclib/encode/pub
 
-include $(BASE)/encode/make.mk
+include $(BASE)/scclib/encode/make.mk
 
 ifeq ($(BLDTYPE),debug)
 SLIBS := -lsccencoded $(SLIBS)

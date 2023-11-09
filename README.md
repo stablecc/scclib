@@ -16,29 +16,27 @@ with older versions of Bazel.
 
 An alternative [build system](make/) using GNU make is available, for systems without Bazel.
 
-## quick start
+## quick start using bazel
 
 Install the [build essentials and OpenSSL development packages](dev_packages.md), [Install bazel](install_bazel.md),
 download the source code, and run the following from the ```scclib``` directory:
 ```
 $ bazel clean --expunge
-$ ./sanity.sh
-```
-If you have Intel IPP and IPPCP on your system, try:
-```
-$ ./sanity.sh ipp
+$ ./all_tests_bazel.sh
 ```
 
-## installation in a local workspace
+Binaries will be in directories `bazel-*`.
 
-1. Make sure the [build essentials and OpenSSL development packages](dev_packages.md) are installed and up-to-date.
+## quick start using make
 
-2. [Install bazel](install_bazel.md) on your local system.
+Download `scclib` and all associated repositories `scclib-openssl`, `scclib-sqlite`, `scclib-zlib`, and `googletest`.
 
-3. Set up a workspace, either [remotely](workspace_remote.md) or [locally](workspace_local.md).
+Run the sanity test:
+```
+$ ./all_tests_make.sh
+```
 
-4. Run the sanity tests to make sure things are working (using [sanity.sh](sanity.sh)).
-
+Binaries will be in directories `../sccbin` and `../sccobj`.
 
 ## documentation
 

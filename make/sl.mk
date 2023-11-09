@@ -31,7 +31,7 @@
 
 CPPFLAGS += -fpic
 
-include $(BASE)/make/shared.mk
+include $(BASE)/scclib/make/shared.mk
 
 .PHONY: debug
 debug:
@@ -86,7 +86,7 @@ help:
 	@echo
 	@echo 'clean      - clean this module only'
 	@echo 'cleanlibs  - clean all shared libs for this module'
-	@echo "cleanall   - clean everything by removing ${BASE}/bin and ${BASE}/obj directory contents"
+	@echo "cleanall   - clean everything by removing ${BASE}/sccbin and ${BASE}/sccobj directory contents"
 	@echo 
 
-include $(BASE)/make/rules.mk
+include $(BASE)/scclib/make/rules.mk

@@ -26,14 +26,14 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-BASE = ../..
+BASE = ../../..
 
 NAME = crypto_unit
 
 SRCS = main.cc bignum.cc random.cc secvec.cc uuid.cc
 
-include $(BASE)/../googletest/googletest/make.mk
-include $(BASE)/crypto/make.mk
-include $(BASE)/encode/make.mk
+include $(BASE)/googletest/googletest/make.mk
+include $(BASE)/scclib/crypto/make.mk
+include $(BASE)/scclib/encode/make.mk
 
-include $(BASE)/make/app.mk
+include $(BASE)/scclib/make/app.mk

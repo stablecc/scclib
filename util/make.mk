@@ -29,9 +29,9 @@
 ifndef SCCLIB_UTIL
 SCCLIB_UTIL := 1
 
-BLDLIBS += $(BASE)/util
+BLDLIBS += $(BASE)/scclib/util
 
-CPPFLAGS += -isystem $(BASE)/util/pub
+CPPFLAGS += -isystem $(BASE)/scclib/util/pub
 
 ifeq ($(BLDTYPE),debug)
 SLIBS := -lsccutild $(SLIBS)
