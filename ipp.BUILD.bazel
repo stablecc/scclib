@@ -35,7 +35,7 @@ cc_library(
 		"include",
 	],
 	linkopts = [
-		"-L /opt/intel/ipp/lib/intel64", # NOTE: hardcoded path, might be able to access the WORKSPACE path here
+		"-L /opt/intel/oneapi/ipp/latest/lib/intel64", # NOTE: hardcoded path, might be able to access the WORKSPACE path here
 		"-lippcore",
 		"-lippi",
 		"-lipps",

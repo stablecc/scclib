@@ -67,7 +67,7 @@ http_archive(
 # Intel IPP library (see intel.txt)
 new_local_repository(
 	name = "import_ipp",
-	path = "/opt/intel/ipp",
+	path = "/opt/intel/openapi/ipp/latest",
 	build_file = "ipp.BUILD.bazel",
 )
 
@@ -81,7 +81,7 @@ http_archive(
 # Intel IPP Cryptography library (see intel.txt)
 new_local_repository(
 	name = "import_ippcp",
-	path = "/opt/intel/ippcp",
+	path = "/opt/intel/oneapi/ippcp/latest",
 	build_file = "ippcp.BUILD.bazel",
 )
 
