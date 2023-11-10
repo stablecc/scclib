@@ -67,7 +67,7 @@ http_archive(
 # Intel IPP library (see intel.txt)
 new_local_repository(
 	name = "import_ipp",
-	path = "/opt/intel/openapi/ipp/latest",
+	path = "/opt/intel/oneapi/ipp/latest",
 	build_file = "ipp.BUILD.bazel",
 )
 
