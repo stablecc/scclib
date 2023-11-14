@@ -31,6 +31,7 @@ cc_test(
 	size = "small",
 	srcs = [
 		"hex.cc",
+		"base64.cc",
 	],
 	copts = ["-std=c++17"],
 	deps = [

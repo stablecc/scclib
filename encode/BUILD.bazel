@@ -30,9 +30,11 @@ cc_library(
 	name = "sccencodelib",
 	srcs = [
 		"hex.cc",
+		"base64.cc",
 	],
 	hdrs = [
 		"pub/encode/hex.h",
+		"pub/encode/base64.h",
 	],
 	includes = [
 		"pub",
