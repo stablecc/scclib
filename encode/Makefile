@@ -28,7 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 BASE = ../..
 
-CPPFLAGS += -isystem $(BASE)/scclib/encode/pub
+CPPFLAGS += -I $(BASE)/scclib/encode/pub
 
 NAME = sccencode
 SRCS = hex.cc base64.cc adler32.cc

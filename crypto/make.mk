@@ -31,7 +31,7 @@ SCCLIB_CRYPTO := 1
 
 BLDLIBS += $(BASE)/scclib/crypto
 
-CPPFLAGS += -isystem $(BASE)/scclib/crypto/pub
+CPPFLAGS += -I $(BASE)/scclib/crypto/pub
 
 ifeq ($(IPP),on)
 include $(BASE)/scclib-ippcp/make.mk

@@ -28,7 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 BASE = ../..
 
-CPPFLAGS += -isystem $(BASE)/scclib/crypto/pub
+CPPFLAGS += -I $(BASE)/scclib/crypto/pub
 
 NAME = scccrypto
 

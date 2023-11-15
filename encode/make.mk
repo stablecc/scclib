@@ -31,7 +31,7 @@ SCCLIB_ENCODE := 1
 
 BLDLIBS += $(BASE)/scclib/encode
 
-CPPFLAGS += -isystem $(BASE)/scclib/encode/pub
+CPPFLAGS += -I $(BASE)/scclib/encode/pub
 
 include $(BASE)/scclib/encode/make.mk
 include $(BASE)/scclib-zlib/make.mk

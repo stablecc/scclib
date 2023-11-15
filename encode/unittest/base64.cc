@@ -33,7 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <iostream>
 #include <string>
 #include <vector>
-#include "encode/base64.h"
+#include <encode/base64.h>
 
 /** \addtogroup encode_base64
 	@{ */

@@ -28,7 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 BASE = ../..
 
-CPPFLAGS += -isystem $(BASE)/scclib/net/pub
+CPPFLAGS += -I $(BASE)/scclib/net/pub
 
 NAME = sccnet
 SRCS = socket.cc inet.cc net_if.cc unix.cc

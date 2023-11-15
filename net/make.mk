@@ -31,7 +31,7 @@ SCCLIB_NET := 1
 
 BLDLIBS += $(BASE)/scclib/net
 
-CPPFLAGS += -isystem $(BASE)/scclib/net/pub
+CPPFLAGS += -I $(BASE)/scclib/net/pub
 
 include $(BASE)/scclib/util/make.mk
 

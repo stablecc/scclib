@@ -28,7 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 BASE = ../..
 
-CPPFLAGS += -isystem $(BASE)/scclib/util/pub
+CPPFLAGS += -I $(BASE)/scclib/util/pub
 
 NAME = sccutil
 SRCS = event.cc fs.cc filedesc.cc iostream.cc logger.cc poller.cc safe_clib.cc

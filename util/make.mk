@@ -31,7 +31,7 @@ SCCLIB_UTIL := 1
 
 BLDLIBS += $(BASE)/scclib/util
 
-CPPFLAGS += -isystem $(BASE)/scclib/util/pub
+CPPFLAGS += -I $(BASE)/scclib/util/pub
 
 ifeq ($(BLDTYPE),debug)
 SLIBS := -lsccutild $(SLIBS)
