@@ -32,10 +32,12 @@ cc_test(
 	srcs = [
 		"hex.cc",
 		"base64.cc",
+		"adler32.cc",
 	],
 	copts = ["-std=c++17"],
 	deps = [
 		"@com_google_googletest//:gtest_main",
 		"@com_stablecc_scclib//encode:sccencodelib",
+		"@com_stablecc_scclib//crypto:scccryptolib",
 	],
 )

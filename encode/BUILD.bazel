@@ -31,17 +31,20 @@ cc_library(
 	srcs = [
 		"hex.cc",
 		"base64.cc",
+		"adler32.cc",
 	],
 	hdrs = [
 		"pub/encode/hex.h",
 		"pub/encode/base64.h",
+		"pub/encode/adler32.h",
 	],
 	includes = [
 		"pub",
 	],
 	copts = ["-std=c++17"],
 	deps = [
-		"@com_stablecc_scclib//util:sccutillib"
+		"@com_stablecc_scclib//util:sccutillib",
+		"@com_stablecc_scclib_zlib//:importzlib",
 	],
 	visibility = ["//visibility:public"],
 )

@@ -30,9 +30,10 @@ BASE = ../../..
 
 NAME = encode_unit
 
-SRCS = main.cc hex.cc base64.url
+SRCS = main.cc hex.cc base64.cc adler32.cc
 
 include $(BASE)/googletest/googletest/make.mk
+include $(BASE)/scclib/crypto/make.mk
 include $(BASE)/scclib/encode/make.mk
 
 include $(BASE)/scclib/make/app.mk

@@ -31,7 +31,7 @@ BASE = ../..
 CPPFLAGS += -isystem $(BASE)/scclib/encode/pub
 
 NAME = sccencode
-SRCS = hex.cc base64.cc
+SRCS = hex.cc base64.cc adler32.cc
 
 include $(BASE)/scclib/encode/make.mk
 include $(BASE)/scclib/make/sl.mk
