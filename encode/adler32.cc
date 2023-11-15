@@ -1,6 +1,6 @@
 #include <encode/adler32.h>
 #include <system_error>
-#include "zlib.h"
+#include <zlib.h>
 
 using namespace scc::encode;
 
