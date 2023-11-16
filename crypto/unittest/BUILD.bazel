@@ -34,6 +34,7 @@ cc_test(
 		"random.cc",
 		"secvec.cc",
 		"uuid.cc",
+		"hash_digest.cc",
 	],
 	copts = ["-std=c++17"],
 	deps = [
