@@ -86,11 +86,7 @@ namespace scc::crypto {
 */
 class Hash
 {
-	std::unique_ptr<HashBase> m_ptr;
-	int m_alg;
-	int m_size;
 public:
-
 	/** Hash type. */
 	enum Algorithm
 	{
@@ -104,33 +100,23 @@ public:
 		sha512_256_type	=1008,		// 256 bit hash based on 512 bit blocks (performance better on 64 bit machines)
 		sm3_type		=1009,		// 256 bit hash based on 512 bit blocks (performance better on 64 bit machines)
 	};
-	/** Hash size in bytes. */
-	enum Size
-	{
-		md5_size		=16,
-		sha1_size		=20,
-		sha224_size		=28,
-		sha256_size		=32,
-		sha384_size		=48,
-		sha512_size		=64,
-		sha512_224_size	=28,
-		sha512_256_size	=32,
-		sm3_size		=32,
-	};
-
-	static int get_size(Algorithm alg)
+private:
+	std::unique_ptr<HashBase> m_ptr;
+	Algorithm m_alg;
+public:
+	static int alg_size(Algorithm alg)
 	{
 		switch (alg)
 		{
-			case md5_type:			return md5_size;
-			case sha1_type:			return sha1_size;
-			case sha224_type:		return sha224_size;
-			case sha256_type:		return sha256_size;
-			case sha384_type:		return sha384_size;
-			case sha512_type:		return sha512_size;
-			case sha512_224_type:	return sha512_224_size;
-			case sha512_256_type:	return sha512_256_size;
-			case sm3_type:			return sm3_size;
+			case md5_type:			return 16;
+			case sha1_type:			return 20;
+			case sha224_type:		return 28;
+			case sha256_type:		return 32;
+			case sha384_type:		return 48;
+			case sha512_type:		return 64;
+			case sha512_224_type:	return 28;
+			case sha512_256_type:	return 32;
+			case sm3_type:			return 32;
 		};
 		return 0;
 	}
@@ -141,7 +127,7 @@ public:
 
 		\param alg Hash algorithm, \see Hash::Algorithm
 	*/
-	Hash(int);
+	Hash(Algorithm);
 	virtual ~Hash();
 	
 	Hash(const Hash&) = delete;
@@ -153,7 +139,7 @@ public:
 	Hash& operator=(Hash&& other);
 
 	/** Test if an algorithm type is supported. */
-	static bool supported(int);
+	static bool supported(Algorithm);
 
 	/** Reset the hash to initial value. */
 	void reset();
@@ -220,7 +206,7 @@ public:
 	int alg() const { return m_alg; }
 
 	/** Return the current hash size. */
-	int size() const { return m_size; }
+	int size() const { return alg_size(m_alg); }
 };
 
 /** Helper class to hash an incoming stream.
@@ -231,9 +217,20 @@ class HashReader : public scc::util::Reader
 	Hash& m_chk;
 	SecVecChar m_buf;
 public:
-	HashReader(scc::util::Reader&, Hash&);
-	virtual ~HashReader();
-	virtual size_t read(void*, size_t);
+	HashReader(scc::util::Reader& rd, Hash& chk) : m_rd(rd), m_chk(chk) {}
+	virtual ~HashReader() {}
+	virtual size_t read(void* loc, size_t len)
+	{
+		m_buf.resize(len);
+		int got = m_rd.read(m_buf.data(), len);
+		if (got == 0)
+		{
+			return 0;
+		}
+		m_chk.update((char*)m_buf.data(), got);
+		memcpy(loc, (char*)m_buf.data(), got);
+		return got;
+	}
 };
 
 /** Helper class to hash an outgoing stream.
@@ -243,9 +240,18 @@ class HashWriter : public scc::util::Writer
 	scc::util::Writer& m_wr;
 	Hash& m_chk;
 public:
-	HashWriter(scc::util::Writer&, Hash&);
-	virtual ~HashWriter();
-	virtual size_t write(const void*, size_t);
+	HashWriter(scc::util::Writer& wr, Hash& chk) : m_wr(wr), m_chk(chk) {}
+	virtual ~HashWriter() {}
+	virtual size_t write(const void* loc, size_t len)
+	{
+		int put = m_wr.write(loc, len);
+		if (put == 0)
+		{
+			return 0;
+		}
+		m_chk.update(loc, put);
+		return put;
+	}
 	virtual void shutdown() {}
 };
 
@@ -258,25 +264,24 @@ public:
 class Hmac
 {
 	std::unique_ptr<HmacBase> m_ptr;
-	int m_alg;
-	int m_size;
+	Hash::Algorithm m_alg;
 public:
 	/** Construct an hmac. 
 		\param key key to set into the hmac
 		\param len length of key
 		\param hash_alg hash algorithm, \see Hash::Algorithm
 	*/
-	Hmac(const void*, int, int);
+	Hmac(const void*, int, Hash::Algorithm);
 	/** Construct an hmac.
 		\param key key to set into the hmac
 		\param hash_alg hash algorithm, \see Hash::Algorithm
 	*/
-	Hmac(const std::vector<char>& key, int hash_alg) : Hmac(key.data(), key.size(), hash_alg) {}
+	Hmac(const std::vector<char>& key, Hash::Algorithm alg) : Hmac(key.data(), key.size(), alg) {}
 	/** Construct an hmac.
 		\param key key to set into the hmac
 		\param hash_alg hash algorithm, \see Hash::Algorithm
 	*/
-	Hmac(const std::string& key, int hash_alg) : Hmac(key.data(), key.size(), hash_alg) {}
+	Hmac(const std::string& key, Hash::Algorithm alg) : Hmac(key.data(), key.size(), alg) {}
 	virtual ~Hmac();
 	Hmac(const Hmac&) = delete;					// no copy
 	Hmac& operator=(const Hmac&) = delete;
@@ -332,7 +337,7 @@ public:
 	int alg() const { return m_alg; }
 	
 	/** Hmac size. */
-	int size() const { return m_size; }
+	int size() const { return Hash::alg_size(m_alg); }
 };
 
 /** @} */

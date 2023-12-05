@@ -5,6 +5,12 @@
 # Use MAKE_TARGET=release to build and test release versions.
 # Use IPP=on to use IPP (otherwise the system will use openssl).
 
+if [[ "$1" == "cleanall" ]]; then
+set -x
+rm -rf ../sccbin/ ../sccobj/
+exit
+fi
+
 set -e # fail on error
 trap 'echo "last command had failure code $?"; printf "\u274c\n"' EXIT # run on exit
 set -x # xtrace

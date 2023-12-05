@@ -65,67 +65,86 @@ static string hmac_sha256 = "dbe8548042b534bd99ddf26b5fc4c2cdfeaf07d8df5427f5794
 
 struct Hash_digest : public testing::Test
 {
-	map<int, Hash> m_digest;
-	map<int, string> m_name;
-	map<int, string> m_init;
-	map<int, string> m_hash;
-	map<int, int> m_size;
+	map<Hash::Algorithm, Hash> m_digest;
+	map<Hash::Algorithm, string> m_name;
+	map<Hash::Algorithm, string> m_init;
+	map<Hash::Algorithm, string> m_hash;
+	map<Hash::Algorithm, int> m_size;
 
 	Hash_digest()
 	{
-		m_digest.insert(std::make_pair(Hash::md5_type, Hash(Hash::md5_type)));
-		m_name[Hash::md5_type] = "md5";
-		m_init[Hash::md5_type] = "d41d8cd98f00b204e9800998ecf8427e";
-		m_hash[Hash::md5_type] = "6630d84e20c4f20a87fcf7e069a2d34e";
-		m_size[Hash::md5_type] = Hash::md5_size;
-
-		m_digest.insert(std::make_pair(Hash::sha1_type, Hash(Hash::sha1_type)));
-		m_name[Hash::sha1_type] = "sha1";
-		m_init[Hash::sha1_type] = "da39a3ee5e6b4b0d3255bfef95601890afd80709";
-		m_hash[Hash::sha1_type] = "3acf7561f5bd97534e575ba2565c6400b9128412";
-		m_size[Hash::sha1_type] = Hash::sha1_size;
-
-		m_digest.insert(std::make_pair(Hash::sha224_type, Hash(Hash::sha224_type)));
-		m_name[Hash::sha224_type] = "sha224";
-		m_init[Hash::sha224_type] = "d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f";
-		m_hash[Hash::sha224_type] = "317746d2199f50c2bf450bf3412d9ff74645aab7c3b747f7779a7b28";
-		m_size[Hash::sha224_type] = Hash::sha224_size;
-
-		m_digest.insert(std::make_pair(Hash::sha256_type, Hash(Hash::sha256_type)));
-		m_name[Hash::sha256_type] = "sha256";
-		m_init[Hash::sha256_type] = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-		m_hash[Hash::sha256_type] = "382dfbf0cd153aec516de602ee6609ee73d97259cc78d74ea0caa9d5b02afab9";
-		m_size[Hash::sha256_type] = Hash::sha256_size;
-
-		m_digest.insert(std::make_pair(Hash::sha384_type, Hash(Hash::sha384_type)));
-		m_name[Hash::sha384_type] = "sha384";
-		m_init[Hash::sha384_type] = "38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b";
-		m_hash[Hash::sha384_type] = "3e7d844e6b9be37e4e8011dd258682c651ea151bf63897503e2ecffbcdfed3492d513028489be69ac3c3f9fb1649fc19";
-		m_size[Hash::sha384_type] = Hash::sha384_size;
-
-		m_digest.insert(std::make_pair(Hash::sha512_type, Hash(Hash::sha512_type)));
-		m_name[Hash::sha512_type] = "sha512";
-		m_init[Hash::sha512_type] = "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e";
-		m_hash[Hash::sha512_type] = "a99f27da164286aea7f2c2928966dda6ce270b851536a6b8c4242f7e20131aa8260dd2239082cc02cc0f9fd0415e3bbe096868bbba7a59afb8a84188b2ce9cf5";
-		m_size[Hash::sha512_type] = Hash::sha512_size;
-
-		m_digest.insert(std::make_pair(Hash::sha512_224_type, Hash(Hash::sha512_224_type)));
-		m_name[Hash::sha512_224_type] = "sha512/224";
-		m_init[Hash::sha512_224_type] = "6ed0dd02806fa89e25de060c19d3ac86cabb87d6a0ddd05c333b84f4";
-		m_hash[Hash::sha512_224_type] = "2ecce2ef45e929a959b3dd1ea8dbcc19ca644742d74a6d34ec654ac3";
-		m_size[Hash::sha512_224_type] = Hash::sha512_224_size;
-
-		m_digest.insert(std::make_pair(Hash::sha512_256_type, Hash(Hash::sha512_256_type)));
-		m_name[Hash::sha512_256_type] = "sha512/256";
-		m_init[Hash::sha512_256_type] = "c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a";
-		m_hash[Hash::sha512_256_type] = "2730a349582f660c6d0660bf7a09b4aa6a8b4a11bb1ab8306950ee93d7d9f258";
-		m_size[Hash::sha512_256_type] = Hash::sha512_256_size;
-
-		m_digest.insert(std::make_pair(Hash::sm3_type, Hash(Hash::sm3_type)));
-		m_name[Hash::sm3_type] = "sm3";
-		m_init[Hash::sm3_type] = "1ab21d8355cfa17f8e61194831e81a8f22bec8c728fefb747ed035eb5082aa2b";
-		m_hash[Hash::sm3_type] = "a4d3f1d0bb8d34696688a434606b5eb3d78e8bcd98ae12621ab36dd0d6a8d9e7";
-		m_size[Hash::sm3_type] = Hash::sm3_size;
+		if (Hash::supported(Hash::md5_type))
+		{
+			m_digest.insert(std::make_pair(Hash::md5_type, Hash(Hash::md5_type)));
+			m_name[Hash::md5_type] = "md5";
+			m_init[Hash::md5_type] = "d41d8cd98f00b204e9800998ecf8427e";
+			m_hash[Hash::md5_type] = "6630d84e20c4f20a87fcf7e069a2d34e";
+			m_size[Hash::md5_type] = 16;
+		}
+		if (Hash::supported(Hash::sha1_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sha1_type, Hash(Hash::sha1_type)));
+			m_name[Hash::sha1_type] = "sha1";
+			m_init[Hash::sha1_type] = "da39a3ee5e6b4b0d3255bfef95601890afd80709";
+			m_hash[Hash::sha1_type] = "3acf7561f5bd97534e575ba2565c6400b9128412";
+			m_size[Hash::sha1_type] = 20;
+		}
+		if (Hash::supported(Hash::sha224_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sha224_type, Hash(Hash::sha224_type)));
+			m_name[Hash::sha224_type] = "sha224";
+			m_init[Hash::sha224_type] = "d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f";
+			m_hash[Hash::sha224_type] = "317746d2199f50c2bf450bf3412d9ff74645aab7c3b747f7779a7b28";
+			m_size[Hash::sha224_type] = 28;
+		}
+		if (Hash::supported(Hash::sha256_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sha256_type, Hash(Hash::sha256_type)));
+			m_name[Hash::sha256_type] = "sha256";
+			m_init[Hash::sha256_type] = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+			m_hash[Hash::sha256_type] = "382dfbf0cd153aec516de602ee6609ee73d97259cc78d74ea0caa9d5b02afab9";
+			m_size[Hash::sha256_type] = 32;
+		}
+		if (Hash::supported(Hash::sha384_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sha384_type, Hash(Hash::sha384_type)));
+			m_name[Hash::sha384_type] = "sha384";
+			m_init[Hash::sha384_type] = "38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b";
+			m_hash[Hash::sha384_type] = "3e7d844e6b9be37e4e8011dd258682c651ea151bf63897503e2ecffbcdfed3492d513028489be69ac3c3f9fb1649fc19";
+			m_size[Hash::sha384_type] = 48;
+		}
+		if (Hash::supported(Hash::sha512_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sha512_type, Hash(Hash::sha512_type)));
+			m_name[Hash::sha512_type] = "sha512";
+			m_init[Hash::sha512_type] = "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e";
+			m_hash[Hash::sha512_type] = "a99f27da164286aea7f2c2928966dda6ce270b851536a6b8c4242f7e20131aa8260dd2239082cc02cc0f9fd0415e3bbe096868bbba7a59afb8a84188b2ce9cf5";
+			m_size[Hash::sha512_type] = 64;
+		}
+		if (Hash::supported(Hash::sha512_224_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sha512_224_type, Hash(Hash::sha512_224_type)));
+			m_name[Hash::sha512_224_type] = "sha512/224";
+			m_init[Hash::sha512_224_type] = "6ed0dd02806fa89e25de060c19d3ac86cabb87d6a0ddd05c333b84f4";
+			m_hash[Hash::sha512_224_type] = "2ecce2ef45e929a959b3dd1ea8dbcc19ca644742d74a6d34ec654ac3";
+			m_size[Hash::sha512_224_type] = 28;
+		}
+		if (Hash::supported(Hash::sha512_256_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sha512_256_type, Hash(Hash::sha512_256_type)));
+			m_name[Hash::sha512_256_type] = "sha512/256";
+			m_init[Hash::sha512_256_type] = "c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a";
+			m_hash[Hash::sha512_256_type] = "2730a349582f660c6d0660bf7a09b4aa6a8b4a11bb1ab8306950ee93d7d9f258";
+			m_size[Hash::sha512_256_type] = 32;
+		}
+		if (Hash::supported(Hash::sm3_type))
+		{
+			m_digest.insert(std::make_pair(Hash::sm3_type, Hash(Hash::sm3_type)));
+			m_name[Hash::sm3_type] = "sm3";
+			m_init[Hash::sm3_type] = "1ab21d8355cfa17f8e61194831e81a8f22bec8c728fefb747ed035eb5082aa2b";
+			m_hash[Hash::sm3_type] = "a4d3f1d0bb8d34696688a434606b5eb3d78e8bcd98ae12621ab36dd0d6a8d9e7";
+			m_size[Hash::sm3_type] = 32;
+		}
 	}
 	virtual ~Hash_digest() {}
 

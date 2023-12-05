@@ -40,26 +40,28 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using namespace scc::crypto;
 
-class HashBase
+struct HashBase
 {
 	const EVP_MD* m_md;
 	EVP_MD_CTX* m_ctx;
 	int m_size;
-public:
-	HashBase(const std::string& n, int size) : m_md(EVP_get_digestbyname(n.c_str())), m_ctx(EVP_MD_CTX_create()), m_size(size)
+
+	HashBase(Hash::Algorithm alg) : m_size(Hash::alg_size(alg))
 	{
+		m_md = digest(alg);
 		if (!m_md)
 		{
 			auto e = ERR_get_error();
 			std::stringstream s;
-			s << n << " not found: " << ERR_error_string(e, nullptr);
+			s << "digest not found: " << ERR_error_string(e, nullptr);
 			throw std::runtime_error(s.str());
 		}
+		m_ctx = EVP_MD_CTX_create();
 		if (!m_ctx)
 		{
 			auto e = ERR_get_error();
 			std::stringstream s;
-			s << n << " ctx new failed: " << ERR_error_string(e, nullptr);
+			s << "hash ctx new failed: " << ERR_error_string(e, nullptr);
 			throw std::runtime_error(s.str());
 		}
 		reset();
@@ -69,6 +71,23 @@ public:
 	virtual ~HashBase()
 	{
 		EVP_MD_CTX_destroy(m_ctx);
+	}
+
+	static const EVP_MD* digest(Hash::Algorithm alg)
+	{
+		switch (alg)
+		{
+			case Hash::md5_type: return EVP_get_digestbyname("md5");
+			case Hash::sha1_type: return EVP_get_digestbyname("sha1");
+			case Hash::sha224_type: return EVP_get_digestbyname("sha224");
+			case Hash::sha256_type: return EVP_get_digestbyname("sha256");
+			case Hash::sha384_type: return EVP_get_digestbyname("sha384");
+			case Hash::sha512_type: return EVP_get_digestbyname("sha512");
+			case Hash::sha512_224_type: return EVP_get_digestbyname("sha512-224");
+			case Hash::sha512_256_type: return EVP_get_digestbyname("sha512-256");
+			case Hash::sm3_type: return EVP_get_digestbyname("sm3");
+		}
+		return nullptr;
 	}
 
 	void reset()
@@ -138,22 +157,8 @@ public:
 	int size() const { return m_size; }
 };
 
-Hash::Hash(int alg) : m_ptr(nullptr), m_alg(alg), m_size(0)
+Hash::Hash(Algorithm alg) : m_ptr(new HashBase(alg)), m_alg(alg)
 {
-	switch (alg)
-	{
-		case Hash::md5_type: m_ptr.reset(new HashBase("md5", Hash::md5_size)); break;
-		case Hash::sha1_type: m_ptr.reset(new HashBase("sha1", Hash::sha1_size)); break;
-		case Hash::sha224_type: m_ptr.reset(new HashBase("sha224", Hash::sha224_size)); break;
-		case Hash::sha256_type: m_ptr.reset(new HashBase("sha256", Hash::sha256_size)); break;
-		case Hash::sha384_type: m_ptr.reset(new HashBase("sha384", Hash::sha384_size)); break;
-		case Hash::sha512_type: m_ptr.reset(new HashBase("sha512", Hash::sha512_size)); break;
-		case Hash::sha512_224_type: m_ptr.reset(new HashBase("sha512-224", Hash::sha512_224_size)); break;
-		case Hash::sha512_256_type: m_ptr.reset(new HashBase("sha512-256", Hash::sha512_256_size)); break;
-		case Hash::sm3_type: m_ptr.reset(new HashBase("sm3", Hash::sm3_size)); break;
-		default: throw std::runtime_error("unknown hash type"); break;
-	}
-	m_size = m_ptr->size();
 }
 
 Hash::~Hash()
@@ -164,34 +169,18 @@ Hash::Hash(Hash&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 }
 
 Hash& Hash::operator=(Hash&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 	return *this;
 }
 
-bool Hash::supported(int type)
+bool Hash::supported(Algorithm alg)
 {
-	switch (type)
-	{
-		case Hash::md5_type:
-		case Hash::sha1_type:
-		case Hash::sha224_type:
-		case Hash::sha256_type:
-		case Hash::sha384_type:
-		case Hash::sha512_type:
-		case Hash::sha512_224_type:
-		case Hash::sha512_256_type:
-		case Hash::sm3_type:
-			return true;
-		default:
-			return false;
-	}
+	return HashBase::digest(alg) != nullptr ? true : false;
 }
 
 void Hash::reset()
@@ -218,69 +207,28 @@ int Hash::final(void* loc, int len)
 	return m_ptr->final(loc, len);
 }
 
-HashReader::HashReader(scc::util::Reader& rd, Hash& chk) : m_rd(rd), m_chk(chk)
-{
-}
-
-HashReader::~HashReader()
-{
-}
-
-size_t HashReader::read(void* loc, size_t len)
-{
-	m_buf.resize(len);
-
-	int got = m_rd.read(m_buf.data(), len);
-	if (got == 0)
-	{
-		return 0;
-	}
-	m_chk.update((char*)m_buf.data(), got);
-	memcpy(loc, (char*)m_buf.data(), got);
-	return got;
-}
-
-HashWriter::HashWriter(scc::util::Writer& wr, Hash& chk) : m_wr(wr), m_chk(chk)
-{
-}
-
-HashWriter::~HashWriter()
-{
-}
-
-size_t HashWriter::write(const void* loc, size_t len)
-{
-	int put = m_wr.write(loc, len);
-	if (put == 0)
-	{
-		return 0;
-	}
-	m_chk.update(loc, put);
-	return put;
-}
-
 class HmacBase
 {
 	const EVP_MD* m_md;
 	HMAC_CTX* m_ctx;
 	int m_size;
 public:
-	HmacBase(const std::string& n, int size) : m_md(EVP_get_digestbyname(n.c_str())), m_size(size)
+	HmacBase(Hash::Algorithm alg) : m_size(Hash::alg_size(alg))
 	{
-		m_ctx = HMAC_CTX_new();
-
+		m_md = HashBase::digest(alg);
 		if (!m_md)
 		{
 			auto e = ERR_get_error();
 			std::stringstream s;
-			s << n << " not found: " << ERR_error_string(e, nullptr);
+			s << "digest not found: " << ERR_error_string(e, nullptr);
 			throw std::runtime_error(s.str());
 		}
+		m_ctx = HMAC_CTX_new();
 		if (!m_ctx)
 		{
 			auto e = ERR_get_error();
 			std::stringstream s;
-			s << n << " hmac ctx new failed: " << ERR_error_string(e, nullptr);
+			s << "hmac ctx new failed: " << ERR_error_string(e, nullptr);
 			throw std::runtime_error(s.str());
 		}
 		HMAC_CTX_reset(m_ctx);
@@ -333,22 +281,8 @@ public:
 	int size() const { return m_size; }
 };
 
-Hmac::Hmac(const void* key, int len, int hash_alg) : m_ptr(nullptr), m_alg(hash_alg)
+Hmac::Hmac(const void* key, int len, Hash::Algorithm alg) : m_ptr(new HmacBase(alg)), m_alg(alg)
 {
-	switch (hash_alg)
-	{
-		case Hash::md5_type: m_ptr.reset(new HmacBase("md5", Hash::md5_size)); break;
-		case Hash::sha1_type: m_ptr.reset(new HmacBase("sha1", Hash::sha1_size)); break;
-		case Hash::sha224_type: m_ptr.reset(new HmacBase("sha224", Hash::sha224_size)); break;
-		case Hash::sha256_type: m_ptr.reset(new HmacBase("sha256", Hash::sha256_size)); break;
-		case Hash::sha384_type: m_ptr.reset(new HmacBase("sha384", Hash::sha384_size)); break;
-		case Hash::sha512_type: m_ptr.reset(new HmacBase("sha512", Hash::sha512_size)); break;
-		case Hash::sha512_224_type: m_ptr.reset(new HmacBase("sha512-224", Hash::sha512_224_size)); break;
-		case Hash::sha512_256_type: m_ptr.reset(new HmacBase("sha512-256", Hash::sha512_256_size)); break;
-		case Hash::sm3_type: m_ptr.reset(new HmacBase("sm3", Hash::sm3_size)); break;
-		default: throw std::runtime_error("unknown hmac type"); break;
-	}
-	m_size = m_ptr->size();
 	m_ptr->init(key, len);
 }
 
@@ -360,14 +294,12 @@ Hmac::Hmac(Hmac&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 }
 
 Hmac& Hmac::operator=(Hmac&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 	return *this;
 }
 

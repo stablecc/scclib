@@ -45,22 +45,22 @@ class HashBase
 	int m_size;
 	SecVecUchar m_buf;
 public:
-	HashBase(int alg)
+	HashBase(Hash::Algorithm alg) : m_size(Hash::alg_size(alg))
 	{
 		switch (alg)
 		{
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-			case Hash::md5_type: m_alg = ippsHashMethod_MD5(); m_size = Hash::md5_size; break;
-			case Hash::sha1_type: m_alg = ippsHashMethod_SHA1(); m_size = Hash::sha1_size; break;
+			case Hash::md5_type: m_alg = ippsHashMethod_MD5(); break;
+			case Hash::sha1_type: m_alg = ippsHashMethod_SHA1(); break;
 #pragma GCC diagnostic pop
-			case Hash::sha224_type: m_alg = ippsHashMethod_SHA224(); m_size = Hash::sha224_size; break;
-			case Hash::sha256_type: m_alg = ippsHashMethod_SHA256(); m_size = Hash::sha256_size; break;
-			case Hash::sha384_type: m_alg = ippsHashMethod_SHA384(); m_size = Hash::sha384_size; break;
-			case Hash::sha512_type: m_alg = ippsHashMethod_SHA512(); m_size = Hash::sha512_size; break;
-			case Hash::sha512_224_type: m_alg = ippsHashMethod_SHA512_224(); m_size = Hash::sha512_224_size; break;
-			case Hash::sha512_256_type: m_alg = ippsHashMethod_SHA512_256(); m_size = Hash::sha512_256_size; break;
-			case Hash::sm3_type: m_alg = ippsHashMethod_SM3(); m_size = Hash::sm3_size; break;
+			case Hash::sha224_type: m_alg = ippsHashMethod_SHA224(); break;
+			case Hash::sha256_type: m_alg = ippsHashMethod_SHA256(); break;
+			case Hash::sha384_type: m_alg = ippsHashMethod_SHA384(); break;
+			case Hash::sha512_type: m_alg = ippsHashMethod_SHA512(); break;
+			case Hash::sha512_224_type: m_alg = ippsHashMethod_SHA512_224(); break;
+			case Hash::sha512_256_type: m_alg = ippsHashMethod_SHA512_256(); break;
+			case Hash::sm3_type: m_alg = ippsHashMethod_SM3(); break;
 			default: throw std::runtime_error("unknown hash type"); break;
 		}
 
@@ -134,7 +134,7 @@ public:
 	int size() const { return m_size; }
 };
 
-Hash::Hash(int alg) : m_ptr(new HashBase(alg)), m_alg(alg), m_size(m_ptr->size())
+Hash::Hash(Algorithm alg) : m_ptr(new HashBase(alg)), m_alg(alg)
 {
 }
 
@@ -146,18 +146,16 @@ Hash::Hash(Hash&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 }
 
 Hash& Hash::operator=(Hash&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 	return *this;
 }
 
-bool Hash::supported(int alg)
+bool Hash::supported(Algorithm alg)
 {
 	switch (alg)
 	{
@@ -200,47 +198,6 @@ int Hash::final(void* loc, int len)
 	return m_ptr->final(loc, len);
 }
 
-HashReader::HashReader(scc::util::Reader& rd, Hash& chk) : m_rd(rd), m_chk(chk)
-{
-}
-
-HashReader::~HashReader()
-{
-}
-
-size_t HashReader::read(void* loc, size_t len)
-{
-	m_buf.resize(len);
-
-	int got = m_rd.read(m_buf.data(), len);
-	if (got == 0)
-	{
-		return 0;
-	}
-	m_chk.update((char*)m_buf.data(), got);
-	memcpy(loc, (char*)m_buf.data(), got);
-	return got;
-}
-
-HashWriter::HashWriter(scc::util::Writer& wr, Hash& chk) : m_wr(wr), m_chk(chk)
-{
-}
-
-HashWriter::~HashWriter()
-{
-}
-
-size_t HashWriter::write(const void* loc, size_t len)
-{
-	int put = m_wr.write(loc, len);
-	if (put == 0)
-	{
-		return 0;
-	}
-	m_chk.update(loc, put);
-	return put;
-}
-
 class HmacBase
 {
 	SecVecUchar m_buf;
@@ -249,25 +206,24 @@ class HmacBase
 	int m_size;
 	int m_algsize;
 public:
-	HmacBase(const void* key, int len, int alg)
+	HmacBase(const void* key, int len, Hash::Algorithm alg) : m_size(Hash::alg_size(alg))
 	{
 		switch (alg)
 		{
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-			case Hash::md5_type: m_alg = ippsHashMethod_MD5(); m_size = Hash::md5_size; break;
-			case Hash::sha1_type: m_alg = ippsHashMethod_SHA1(); m_size = Hash::sha1_size; break;
+			case Hash::md5_type: m_alg = ippsHashMethod_MD5(); break;
+			case Hash::sha1_type: m_alg = ippsHashMethod_SHA1(); break;
 #pragma GCC diagnostic pop
-			case Hash::sha224_type: m_alg = ippsHashMethod_SHA224(); m_size = Hash::sha224_size; break;
-			case Hash::sha256_type: m_alg = ippsHashMethod_SHA256(); m_size = Hash::sha256_size; break;
-			case Hash::sha384_type: m_alg = ippsHashMethod_SHA384(); m_size = Hash::sha384_size; break;
-			case Hash::sha512_type: m_alg = ippsHashMethod_SHA512(); m_size = Hash::sha512_size; break;
-			case Hash::sha512_224_type: m_alg = ippsHashMethod_SHA512_224(); m_size = Hash::sha512_224_size; break;
-			case Hash::sha512_256_type: m_alg = ippsHashMethod_SHA512_256(); m_size = Hash::sha512_256_size; break;
-			case Hash::sm3_type: m_alg = ippsHashMethod_SM3(); m_size = Hash::sm3_size; break;
+			case Hash::sha224_type: m_alg = ippsHashMethod_SHA224(); break;
+			case Hash::sha256_type: m_alg = ippsHashMethod_SHA256(); break;
+			case Hash::sha384_type: m_alg = ippsHashMethod_SHA384(); break;
+			case Hash::sha512_type: m_alg = ippsHashMethod_SHA512(); break;
+			case Hash::sha512_224_type: m_alg = ippsHashMethod_SHA512_224(); break;
+			case Hash::sha512_256_type: m_alg = ippsHashMethod_SHA512_256(); break;
+			case Hash::sm3_type: m_alg = ippsHashMethod_SM3(); break;
 			default: throw std::runtime_error("unknown hash type"); break;
 		}
-
 		int r;
 		if ((r = ippsHMACGetSize_rmf(&m_algsize)) != ippStsNoErr)
 		{
@@ -336,7 +292,7 @@ public:
 	int size() const { return m_size; }
 };
 
-Hmac::Hmac(const void* key, int len, int hash_alg) : m_ptr(new HmacBase(key, len, hash_alg)), m_alg(hash_alg), m_size(m_ptr->size())
+Hmac::Hmac(const void* key, int len, Hash::Algorithm alg) : m_ptr(new HmacBase(key, len, alg)), m_alg(alg)
 {
 }
 
@@ -348,14 +304,12 @@ Hmac::Hmac(Hmac&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 }
 
 Hmac& Hmac::operator=(Hmac&& other)
 {
 	m_ptr.reset(other.m_ptr.release());
 	m_alg = other.m_alg;
-	m_size = other.m_size;
 	return *this;
 }
 
