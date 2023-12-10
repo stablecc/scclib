@@ -49,51 +49,54 @@ namespace scc::encode {
 	Implements "Base 64 Encoding", from https://tools.ietf.org/html/rfc4648
 */
 
-/** Convert from binary to base64 string.
-	\param vin input binary data
-	\param s output base64 encoded string
+class Base64
+{
+public:
+	/** Convert from binary to base64 string.
+		\param vin input binary data
+		\param s output base64 encoded string
 
-	See https://tools.ietf.org/html/rfc4648
-*/
-template<class T>
-void base64_encode(const std::vector<T>&, std::string&) noexcept;
+		See https://tools.ietf.org/html/rfc4648
+	*/
+	template<class T>
+	static void base64_encode(const std::vector<T>&, std::string&) noexcept;
 
-/** Convert from string to base64 string.
-	\param s input string
-	\retval base64_string base64 encoded string
-*/
-std::string str_to_base64(const std::string& s) noexcept;
+	/** Convert from string to base64 string.
+		\param s input string
+		\retval base64_string base64 encoded string
+	*/
+	static std::string str_to_base64(const std::string& s) noexcept;
 
-/** Convert from base64 string to binary.
-	\param s input base 64 string
-	\param v output binary data
-	\retval true if conversion successful
-	\retval false if conversion failed due to invalid input format
-*/
-template <class T>
-bool base64_decode(const std::string&, std::vector<T>&) noexcept;
+	/** Convert from base64 string to binary.
+		\param s input base 64 string
+		\param v output binary data
+		\retval true if conversion successful
+		\retval false if conversion failed due to invalid input format
+	*/
+	template <class T>
+	static bool base64_decode(const std::string&, std::vector<T>&) noexcept;
 
-/** Convert from base64 string to string.
-	\param s input base 64 string
-	\retval base64_string if conversion succeeded
-	\retval empty_string if conversion failed
-*/
-std::string base64_to_str(const std::string&) noexcept;
+	/** Convert from base64 string to string.
+		\param s input base 64 string
+		\retval base64_string if conversion succeeded
+		\retval empty_string if conversion failed
+	*/
+	static std::string base64_to_str(const std::string&) noexcept;
 
+	/** Convert from base64 to base64url.
 
-/** Convert from base64 to base64url.
+		See https://tools.ietf.org/html/rfc4648
 
-	See https://tools.ietf.org/html/rfc4648
+		base64url replaces, '+' with '-', '/' with '_', and removes any padding '=' characters.
 
-	base64url replaces, '+' with '-', '/' with '_', and removes any padding '=' characters.
+		It is also known as "Base 64 with URL and Filename Safe Encoding".
+	*/
+	static std::string base64_to_base64url(const std::string&) noexcept;
 
-	It is also known as "Base 64 with URL and Filename Safe Encoding".
-*/
-std::string base64_to_base64url(const std::string&) noexcept;
-
-/** Convert from base64url to base64.
-*/
-std::string base64url_to_base64(const std::string&) noexcept;
+	/** Convert from base64url to base64.
+	*/
+	static std::string base64url_to_base64(const std::string&) noexcept;
+};
 
 /** @} */
 /** @} */

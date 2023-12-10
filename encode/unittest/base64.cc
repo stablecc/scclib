@@ -42,8 +42,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Tests for \ref encode_base64. */
 /** @} */
 
-using namespace std;
-using namespace scc::encode;
+using std::string;
+using std::cout;
+using std::endl;
+using scc::encode::Base64;
 
 static string b64_allchar_enc =
 "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4"
@@ -62,18 +64,18 @@ static string b64_test3_enc = "aGl0";
 TEST(base64, zero)
 {
 	string z;
-	ASSERT_EQ(str_to_base64(z).size(), 0);
-	ASSERT_EQ(base64_to_str(z).size(), 0);
+	ASSERT_EQ(Base64::str_to_base64(z).size(), 0);
+	ASSERT_EQ(Base64::base64_to_str(z).size(), 0);
 }
 
 TEST(base64, teststrings)
 {
-	ASSERT_EQ(str_to_base64(b64_test1), b64_test1_enc);
-	ASSERT_EQ(base64_to_str(b64_test1_enc), b64_test1);
-	ASSERT_EQ(str_to_base64(b64_test2), b64_test2_enc);
-	ASSERT_EQ(base64_to_str(b64_test2_enc), b64_test2);
-	ASSERT_EQ(str_to_base64(b64_test3), b64_test3_enc);
-	ASSERT_EQ(base64_to_str(b64_test3_enc), b64_test3);
+	ASSERT_EQ(Base64::str_to_base64(b64_test1), b64_test1_enc);
+	ASSERT_EQ(Base64::base64_to_str(b64_test1_enc), b64_test1);
+	ASSERT_EQ(Base64::str_to_base64(b64_test2), b64_test2_enc);
+	ASSERT_EQ(Base64::base64_to_str(b64_test2_enc), b64_test2);
+	ASSERT_EQ(Base64::str_to_base64(b64_test3), b64_test3_enc);
+	ASSERT_EQ(Base64::base64_to_str(b64_test3_enc), b64_test3);
 }
 
 TEST(base64, allchars)
@@ -88,19 +90,19 @@ TEST(base64, allchars)
 	}
 
 	std::string s;
-	base64_encode(allvect, s);
+	Base64::base64_encode(allvect, s);
 	cout << "allvect encoded: " << s << " size: " << s.size() << endl;
 	ASSERT_EQ(s, b64_allchar_enc);
 
-	s = str_to_base64(allstr);
+	s = Base64::str_to_base64(allstr);
 	cout << "allstr encoded : " << s << " size: " << s.size() << endl;
 	ASSERT_EQ(s, b64_allchar_enc);
 
-	s = base64_to_str(b64_allchar_enc);
+	s = Base64::base64_to_str(b64_allchar_enc);
 	ASSERT_EQ(s, allstr);
 
 	std::vector<char> v;
-	base64_decode(b64_allchar_enc, v);
+	Base64::base64_decode(b64_allchar_enc, v);
 	ASSERT_EQ(v, allvect);
 }
 
@@ -112,25 +114,25 @@ TEST(base64, teststrings_url)
 		return encs.find_first_of("+/=") == string::npos;
 	};
 
-	auto urlall= base64_to_base64url(b64_allchar_enc);
+	auto urlall= Base64::base64_to_base64url(b64_allchar_enc);
 	cout << "all char base64:" << endl << b64_allchar_enc << endl;
 	cout << "all char base64url:" << endl << urlall << endl;
 	ASSERT_TRUE(urltest(urlall));
-	auto baseall = base64url_to_base64(urlall);
+	auto baseall = Base64::base64url_to_base64(urlall);
 	ASSERT_EQ(baseall, b64_allchar_enc);
 
-	auto url1 = base64_to_base64url(b64_test1_enc);
+	auto url1 = Base64::base64_to_base64url(b64_test1_enc);
 	ASSERT_TRUE(urltest(url1));
-	auto base1 = base64url_to_base64(url1);
+	auto base1 = Base64::base64url_to_base64(url1);
 	ASSERT_EQ(base1, b64_test1_enc);
 
-	auto url2 = base64_to_base64url(b64_test2_enc);
+	auto url2 = Base64::base64_to_base64url(b64_test2_enc);
 	ASSERT_TRUE(urltest(url2));
-	auto base2 = base64url_to_base64(url2);
+	auto base2 = Base64::base64url_to_base64(url2);
 	ASSERT_EQ(base2, b64_test2_enc);
 
-	auto url3 = base64_to_base64url(b64_test3_enc);
+	auto url3 = Base64::base64_to_base64url(b64_test3_enc);
 	ASSERT_TRUE(urltest(url3));
-	auto base3 = base64url_to_base64(url3);
+	auto base3 = Base64::base64url_to_base64(url3);
 	ASSERT_EQ(base3, b64_test3_enc);
 }

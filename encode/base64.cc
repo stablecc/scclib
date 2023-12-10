@@ -35,7 +35,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <string>
 #include <iostream>
 #include <iomanip>
-using std::cout;
 
 using namespace scc::encode;
 
@@ -66,11 +65,8 @@ static unsigned char decVal[128] =
 	41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 66, 66, 66, 66, 66,
 };
 
-namespace scc {
-namespace encode {
-
 template <class T>
-void base64_encode(const std::vector<T>& vin, std::string& s) noexcept
+void Base64::base64_encode(const std::vector<T>& vin, std::string& s) noexcept
 {
 	/** Extra stuff */
 	unsigned char* v = (unsigned char*)&vin[0];
@@ -106,10 +102,10 @@ void base64_encode(const std::vector<T>& vin, std::string& s) noexcept
 	}
 }
 
-template void base64_encode<char>(const std::vector<char>&, std::string&);
-template void base64_encode<unsigned char>(const std::vector<unsigned char>&, std::string&);
+template void Base64::base64_encode<char>(const std::vector<char>&, std::string&);
+template void Base64::base64_encode<unsigned char>(const std::vector<unsigned char>&, std::string&);
 
-std::string str_to_base64(const std::string& s) noexcept
+std::string Base64::str_to_base64(const std::string& s) noexcept
 {
 	std::vector<char> v(s.begin(), s.end());
 	std::string ret;
@@ -118,7 +114,7 @@ std::string str_to_base64(const std::string& s) noexcept
 }
 
 template <class T>
-bool base64_decode(const std::string& s, std::vector<T>& v) noexcept
+bool Base64::base64_decode(const std::string& s, std::vector<T>& v) noexcept
 {
 	bool ok = true;
 	unsigned int b = 0;
@@ -166,10 +162,10 @@ bool base64_decode(const std::string& s, std::vector<T>& v) noexcept
 	return ok;
 }
 
-template bool base64_decode<char>(const std::string& s, std::vector<char>& v) noexcept;
-template bool base64_decode<unsigned char>(const std::string& s, std::vector<unsigned char>& v) noexcept;
+template bool Base64::base64_decode<char>(const std::string& s, std::vector<char>& v) noexcept;
+template bool Base64::base64_decode<unsigned char>(const std::string& s, std::vector<unsigned char>& v) noexcept;
 
-std::string base64_to_str(const std::string& s) noexcept
+std::string Base64::base64_to_str(const std::string& s) noexcept
 {
 	std::vector<char> v;
 	if (!base64_decode(s, v))
@@ -179,7 +175,7 @@ std::string base64_to_str(const std::string& s) noexcept
 	return std::string(v.begin(), v.end());
 }
 
-std::string base64_to_base64url(const std::string& b) noexcept
+std::string Base64::base64_to_base64url(const std::string& b) noexcept
 {
 	std::string ret;
 	for (char ch : b)
@@ -191,7 +187,7 @@ std::string base64_to_base64url(const std::string& b) noexcept
 	return ret;
 }
 
-std::string base64url_to_base64(const std::string& u) noexcept
+std::string Base64::base64url_to_base64(const std::string& u) noexcept
 {
 	std::string ret;
 	for (char ch : u)
@@ -209,6 +205,3 @@ std::string base64url_to_base64(const std::string& u) noexcept
 
 	return ret;
 }
-
-}
-} //namespace
