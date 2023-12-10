@@ -5,6 +5,12 @@
 # Use IPP=on to use IPP (otherwise the system will use openssl).
 # Run bazel clean --expunge first to have a completely clean environment.
 
+if [[ "$1" == "cleanall" ]]; then
+set -x
+bazel clean --expunge
+exit
+fi
+
 if [[ "$IPP" == "on" ]]; then
 IPPCMD='--define ipp=on'
 else
