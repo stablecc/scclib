@@ -39,6 +39,7 @@ cc_test(
 	srcs = select({
 		":ippcp": [
 			"rsa.cc",
+			"ecc.cc",
 		],
 		"//conditions:default": [
 		],
