@@ -49,6 +49,7 @@ cc_library(
 	}) + [
 		"secvec.cc",
 		"uuid.cc",
+		"der.cc",
 	],
 	hdrs = [
 		"pub/crypto/bignum.h",
@@ -56,6 +57,7 @@ cc_library(
 		"pub/crypto/secvec.h",
 		"pub/crypto/uuid.h",
 		"pub/crypto/hash.h",
+		"pub/crypto/der.h",
 	],
 	includes = [
 		"pub",

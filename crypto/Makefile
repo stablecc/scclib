@@ -37,7 +37,7 @@ SRCS = ippcp/random.cc ippcp/bignum.cc ippcp/hash.cc
 else
 SRCS = openssl/random.cc openssl/bignum.cc openssl/hash.cc
 endif
-SRCS += secvec.cc uuid.cc
+SRCS += secvec.cc uuid.cc der.cc
 
 include $(BASE)/scclib/crypto/make.mk
 include $(BASE)/scclib/make/sl.mk

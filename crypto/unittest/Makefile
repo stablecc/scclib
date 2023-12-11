@@ -30,7 +30,7 @@ BASE = ../../..
 
 NAME = crypto_unit
 
-SRCS = main.cc bignum.cc random.cc secvec.cc uuid.cc hash_digest.cc
+SRCS = main.cc bignum.cc random.cc secvec.cc uuid.cc hash_digest.cc der.cc der_cert.cc
 
 include $(BASE)/googletest/googletest/make.mk
 include $(BASE)/scclib/crypto/make.mk
