@@ -31,6 +31,9 @@ BASE = ../../..
 NAME = crypto_unit
 
 SRCS = main.cc bignum.cc random.cc secvec.cc uuid.cc hash_digest.cc der.cc der_cert.cc
+ifeq ($(IPP),on)
+SRCS += rsa.cc
+endif
 
 include $(BASE)/googletest/googletest/make.mk
 include $(BASE)/scclib/crypto/make.mk

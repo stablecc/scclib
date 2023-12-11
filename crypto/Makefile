@@ -33,7 +33,7 @@ CPPFLAGS += -I $(BASE)/scclib/crypto/pub
 NAME = scccrypto
 
 ifeq ($(IPP),on)
-SRCS = ippcp/random.cc ippcp/bignum.cc ippcp/hash.cc
+SRCS = ippcp/random.cc ippcp/bignum.cc ippcp/hash.cc ippcp/rsa.cc
 else
 SRCS = openssl/random.cc openssl/bignum.cc openssl/hash.cc
 endif
