@@ -43,6 +43,7 @@ cc_library(
 			"ippcp/rsa.cc",
 			"ippcp/ecc.cc",
 			"ippcp/cipher.cc",
+			"cert.cc",
 		],
 		"//conditions:default": [
 			"openssl/bignum.cc",
@@ -64,6 +65,7 @@ cc_library(
 		"pub/crypto/rsa.h",
 		"pub/crypto/ecc.h",
 		"pub/crypto/cipher.h",
+		"pub/crypto/cert.h",
 	],
 	includes = [
 		"pub",

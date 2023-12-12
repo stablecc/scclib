@@ -41,6 +41,7 @@ cc_test(
 			"rsa.cc",
 			"ecc.cc",
 			"cipher.cc",
+			"cert.cc",
 		],
 		"//conditions:default": [
 		],
@@ -63,6 +64,7 @@ cc_test(
 		"openssl/rsapriv.pem",
 		"openssl/rsapub.crt",
 		"openssl/rsapub.pem",
+		"openssl/osslpub.pem",
 	],
 	copts = ["-std=c++17"],
 	deps = [

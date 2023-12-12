@@ -30,7 +30,7 @@ BASE = ../../..
 
 NAME = crypto_unit
 
-SRCS = main.cc bignum.cc random.cc secvec.cc uuid.cc hash_digest.cc der.cc der_cert.cc
+SRCS = main.cc bignum.cc random.cc secvec.cc uuid.cc hash_digest.cc der.cc der_cert.cc cert.cc
 ifeq ($(IPP),on)
 SRCS += rsa.cc ecc.cc cipher.cc
 endif

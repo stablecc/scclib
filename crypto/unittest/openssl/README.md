@@ -4,13 +4,21 @@ All certificates generated using openssl command line utility.
 
 ## private key
 
-3072 bit RSA private key:
+3072 bit RSA private key in PKCS#1 format:
 ```
 $ openssl rsa -text -noout -in rsapriv.pem 
 $ openssl rsa -text -noout -inform DER -in rsapriv.crt
 Private-Key: (3072 bit, 2 primes)
 modulus:
-    00:ab:f8:10:fe:60:a3:6c:20:da:ca:a1:70:1a:63:
+    00:f6:f2:3b:30:17:36:32:2f:0d:29:97:ae:6d:26:
+```
+
+3072 bit RSA private key in PKCS#1 format:
+```
+$ openssl rsa -text -noout -in osslpriv.pem
+Private-Key: (3072 bit, 2 primes)
+modulus:
+    00:f6:f2:3b:30:17:36:32:2f:0d:29:97:ae:6d:26:
 ```
 
 ## public key
