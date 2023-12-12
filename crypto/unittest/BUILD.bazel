@@ -40,6 +40,7 @@ cc_test(
 		":ippcp": [
 			"rsa.cc",
 			"ecc.cc",
+			"cipher.cc",
 		],
 		"//conditions:default": [
 		],

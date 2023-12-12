@@ -32,7 +32,7 @@ NAME = crypto_unit
 
 SRCS = main.cc bignum.cc random.cc secvec.cc uuid.cc hash_digest.cc der.cc der_cert.cc
 ifeq ($(IPP),on)
-SRCS += rsa.cc ecc.cc
+SRCS += rsa.cc ecc.cc cipher.cc
 endif
 
 include $(BASE)/googletest/googletest/make.mk
