@@ -69,7 +69,7 @@ struct DerCertTest : public testing::Test
 
 		stringstream dir;
 
-		if (sd && wd)
+		if (sd)
 		{
 			dir << sd << "/" << wd << "/crypto/unittest/openssl/";
 		}

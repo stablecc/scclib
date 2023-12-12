@@ -5,9 +5,12 @@
 # Use MAKE_TARGET=release to build and test release versions.
 # Use IPP=on to use IPP (otherwise the system will use openssl).
 
+SCCBIN=sccbld-bin
+SCCOBJ=sccbld-obj
+
 if [[ "$1" == "cleanall" ]]; then
 set -x
-rm -rf ../sccbin/ ../sccobj/
+rm -rf ../${SCCBIN}/ ../${SCCOBJ}/
 exit
 fi
 
@@ -25,30 +28,32 @@ fi
 # associated projects
 
 if [[ "$IPP" == "on" ]]; then
+MAKE="make IPP=on"
 # ipp
-make -C ../scclib-ipp/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/ipp_unit${BIN_PRE}
+$MAKE -C ../scclib-ipp/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/ipp_unit${BIN_PRE}
 # ippcp
-make -C ../scclib-ippcp/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/ippcp_unit${BIN_PRE}
+$MAKE -C ../scclib-ippcp/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/ippcp_unit${BIN_PRE}
 else
+MAKE=make
 # openssl
-make -C ../scclib-openssl/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/openssl_unit${BIN_PRE}
+$MAKE -C ../scclib-openssl/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/openssl_unit${BIN_PRE}
 fi
 # sqlite
-make -C ../scclib-sqlite/sqlite/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/openssl_unit${BIN_PRE}
-make -C ../scclib-sqlite/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/openssl_unit${BIN_PRE}
+$MAKE -C ../scclib-sqlite/sqlite/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/import_sqlite_unit${BIN_PRE}
+$MAKE -C ../scclib-sqlite/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/sqlite_unit${BIN_PRE}
 # zlib
-make -C ../scclib-zlib/unittest $MAKE_TARGET; (cd ../scclib-zlib/unittest; LD_LIBRARY_PATH=../../sccbin ../../sccbin/zlib_unit${BIN_PRE})
+$MAKE -C ../scclib-zlib/unittest $MAKE_TARGET; (cd ../scclib-zlib/unittest; LD_LIBRARY_PATH=../../${SCCBIN} ../../${SCCBIN}/zlib_unit${BIN_PRE})
 
 # scclib libraries
 
 # crypto
-make -C crypto/unittest $MAKE_TARGET; (cd crypto/unittest; LD_LIBRARY_PATH=../../../sccbin ../../../sccbin/crypto_unit${BIN_PRE})
+$MAKE -C crypto/unittest $MAKE_TARGET; (cd crypto/unittest; LD_LIBRARY_PATH=../../../${SCCBIN} ../../../${SCCBIN}/crypto_unit${BIN_PRE})
 # encode
-make -C encode/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/encode_unit${BIN_PRE}
+$MAKE -C encode/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/encode_unit${BIN_PRE}
 # net
-make -C net/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/net_unit${BIN_PRE}
+$MAKE -C net/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/net_unit${BIN_PRE}
 # util
-make -C util/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../sccbin ../sccbin/util_unit${BIN_PRE}
+$MAKE -C util/unittest $MAKE_TARGET; LD_LIBRARY_PATH=../${SCCBIN} ../${SCCBIN}/util_unit${BIN_PRE}
 
 set +x
 trap '' EXIT

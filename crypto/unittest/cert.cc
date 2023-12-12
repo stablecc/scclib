@@ -69,15 +69,19 @@ struct CertTest : public testing::Test
 
 	CertTest()
 	{
-		// detect the bazel workspace environment, and create a relative path to the data files
+		// ensure the system detects bazel and finds files in the correct location
+		// see https://bazel.build/reference/test-encyclopedia for a description of bazel environment
 		auto sd = getenv("TEST_SRCDIR");
-		auto wd = getenv("TEST_WORKSPACE");
+		if (sd)
+		{
+			cout << "TEST_SRCDIR=" << sd << endl;
+		}
 
 		stringstream dir;
 
-		if (sd && wd)
+		if (sd)
 		{
-			dir << sd << "/" << wd << "/crypto/unittest/openssl/";
+			dir << sd << "/com_stablecc_scclib/crypto/unittest/openssl/";
 		}
 		else
 		{

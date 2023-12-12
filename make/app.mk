@@ -87,7 +87,7 @@ help:
 	@echo
 	@echo 'clean      - clean this module only'
 	@echo 'cleanlibs  - clean all shared libs for this module'
-	@echo "cleanall   - clean everything by removing ${BASE}/sccbin and ${BASE}/sccobj directory contents"
+	@echo "cleanall   - clean everything by removing ${BASE}/sccbld-bin and ${BASE}/sccbld-obj directory contents"
 	@echo 
 
 include $(BASE)/scclib/make/rules.mk

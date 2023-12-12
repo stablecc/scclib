@@ -43,7 +43,7 @@ cc_library(
 	includes = [
 		"pub",
 	],
-	copts = ["-std=c++17"],
+	copts = ["-std=c++20"],
 	deps = [
 		"@com_stablecc_scclib//util:sccutillib"
 	],

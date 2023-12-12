@@ -31,7 +31,7 @@ cc_binary(
 	srcs = [
 		"netmain.cc",
 	],
-	copts = ["-std=c++17"],
+	copts = ["-std=c++20"],
 	linkopts = ["-pthread"],
 	deps = [
 		"@com_stablecc_scclib//net:sccnetlib",

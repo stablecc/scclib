@@ -34,7 +34,7 @@ cc_test(
 		"base64.cc",
 		"adler32.cc",
 	],
-	copts = ["-std=c++17"],
+	copts = ["-std=c++20"],
 	deps = [
 		"@com_google_googletest//:gtest_main",
 		"@com_stablecc_scclib//encode:sccencodelib",

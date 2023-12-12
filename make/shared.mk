@@ -34,8 +34,8 @@ default: debug
 
 .PHONY: cleanall
 cleanall:
-	rm -rf $(BASE)/sccbin/*
-	rm -rf $(BASE)/sccobj/*
+	rm -rf $(BASE)/sccbld-bin/*
+	rm -rf $(BASE)/sccbld-obj/*
 
 GNUMAKEFLAGS += --no-print-directory
 
@@ -58,11 +58,11 @@ LDFLAGS += -lstdc++ -pthread -lm
 # all intermediate output goes to objdir
 ifeq ($(BLDTYPE),debug)
 CXXFLAGS += -O0 -g
-OBJDIR = $(BASE)/sccobj/$(NAME)_d
+OBJDIR = $(BASE)/sccbld-obj/$(NAME)_d
 else
 # NDEBUG is defined to disable any assert() macros in production
 CXXFLAGS += -g0 -O3 -DNDEBUG -ffunction-sections -fdata-sections
-OBJDIR = $(BASE)/sccobj/$(NAME)
+OBJDIR = $(BASE)/sccbld-obj/$(NAME)
 endif
 
 ifeq ($(USE_GCOV),yes)
@@ -71,7 +71,7 @@ GCOV_LD = -lgcov
 endif
 
 # all apps and shared libs go to bindir
-BINDIR = $(BASE)/sccbin
+BINDIR = $(BASE)/sccbld-bin
 
 # if needed, create subdirs under the objdir directory for all source files
 OBJS = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(basename $(SRCS))))
